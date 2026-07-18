@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research | Nichula Sathmith Wasalathilaka</title>
+  <meta name="description" content="Research publications by Nichula Sathmith Wasalathilaka spanning trustworthy medical AI (MICCAI 2026), remote sensing (IGARSS 2026, IEEE J-STARS), and scientific computing." />
+  <meta name="author" content="Nichula Sathmith Wasalathilaka" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#f8f6f1" />
+  <link rel="icon" href="images/nichula_2.jpg" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="images/nichula_2.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f8f6f1;
+      --surface: #ffffff;
+      --text: #23303b;
+      --heading: #18212a;
+      --muted: #5f6a75;
+      --accent: #3f5f7b;
+      --line: #d5dbe1;
+      --radius: 0.65rem;
+      --max-width: 1180px;
+      --shadow-sm: 0 1px 3px rgba(24, 33, 42, 0.06), 0 1px 6px rgba(24, 33, 42, 0.04);
+      --shadow-md: 0 4px 16px rgba(24, 33, 42, 0.09), 0 1px 4px rgba(24, 33, 42, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Source Sans 3", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.72;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.18em;
+    }
+
+    a:hover {
+      color: var(--heading);
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--max-width));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(248, 246, 241, 0.94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .nav-bar {
+      min-height: 4.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-family: "Source Serif 4", serif;
+      font-size: 1.16rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--heading);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.25rem;
+      align-items: center;
+    }
+
+    .nav-links > li {
+      position: relative;
+    }
+
+    .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.5rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.18s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible,
+    .nav-links a.is-active {
+      color: var(--heading);
+      text-decoration: underline;
+    }
+
+    .nav-dropdown {
+      position: relative;
+    }
+
+    .nav-dropdown-summary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      min-height: 2.5rem;
+      color: var(--heading);
+      cursor: pointer;
+      font: inherit;
+      font-weight: 600;
+      list-style: none;
+      text-decoration: underline;
+      text-underline-offset: 0.18em;
+    }
+
+    .nav-dropdown-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .nav-dropdown-summary:hover,
+    .nav-dropdown-summary:focus-visible,
+    .nav-dropdown[open] > .nav-dropdown-summary {
+      color: var(--accent);
+    }
+
+    .nav-dropdown-summary::after {
+      content: "";
+      width: 0.5rem;
+      height: 0.5rem;
+      border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      transform: rotate(45deg) translateY(-0.08rem);
+      transform-origin: 50% 50%;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-dropdown[open] > .nav-dropdown-summary::after,
+    .nav-dropdown:hover > .nav-dropdown-summary::after,
+    .nav-dropdown:focus-within > .nav-dropdown-summary::after {
+      transform: rotate(225deg) translateY(-0.02rem);
+    }
+
+    .nav-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 0.8rem);
+      left: 0;
+      z-index: 30;
+      width: clamp(14.5rem, 24vw, 17.5rem);
+      padding: 0.55rem;
+      border: 1px solid var(--line);
+      border-radius: 1.25rem;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(248, 246, 241, 0.98) 100%);
+      box-shadow: 0 18px 42px rgba(24, 33, 42, 0.1);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(0.75rem);
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    }
+
+    .nav-dropdown-menu::before {
+      content: "";
+      display: block;
+      height: 0.18rem;
+      margin: 0.2rem 0 0.5rem;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(63, 95, 123, 0.12) 0%, rgba(63, 95, 123, 0.52) 45%, rgba(63, 95, 123, 0.12) 100%);
+    }
+
+    .nav-dropdown[open] > .nav-dropdown-menu,
+    .nav-dropdown:hover > .nav-dropdown-menu,
+    .nav-dropdown:focus-within > .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .nav-dropdown-menu ul {
+      list-style: none;
+      display: grid;
+      gap: 0.2rem;
+    }
+
+    .nav-dropdown-menu a {
+      display: block;
+      min-height: auto;
+      padding: 0.85rem 1rem;
+      border: 1px solid transparent;
+      border-radius: 0.95rem;
+      color: var(--heading);
+      font-size: 0.97rem;
+      font-weight: 600;
+      line-height: 1.35;
+      text-align: left;
+      text-decoration: none;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-dropdown-menu a:hover,
+    .nav-dropdown-menu a:focus-visible {
+      border-color: rgba(63, 95, 123, 0.16);
+      background: rgba(63, 95, 123, 0.08);
+      color: var(--heading);
+      transform: translateY(-1px);
+    }
+
+    .nav-dropdown-menu a.is-current {
+      border-color: rgba(63, 95, 123, 0.14);
+      background: rgba(63, 95, 123, 0.06);
+      color: var(--accent);
+    }
+
+    main {
+      padding: 3rem 0 3rem;
+    }
+
+    .page-header {
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .page-kicker {
+      display: block;
+      margin-bottom: 0.7rem;
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .page-title {
+      font-family: "Source Serif 4", serif;
+      font-size: clamp(2.1rem, 4vw, 3.2rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--heading);
+    }
+
+    .page-intro {
+      max-width: 44rem;
+      margin-top: 0.9rem;
+      color: var(--muted);
+    }
+
+    .section {
+      margin-top: 3rem;
+      padding-top: 1.35rem;
+      border-top: 1px solid var(--line);
+    }
+
+    #research-all {
+      scroll-margin-top: 7rem;
+    }
+
+    .section-title {
+      font-family: "Source Serif 4", serif;
+      font-size: 1.55rem;
+      line-height: 1.2;
+      color: var(--heading);
+      margin-bottom: 1.35rem;
+      display: inline-block;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid rgba(63, 95, 123, 0.22);
+    }
+
+    .research-area {
+      margin-top: 1.65rem;
+      scroll-margin-top: 7rem;
+    }
+
+    .research-area + .research-area {
+      padding-top: 1.65rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .research-area-title {
+      font-family: "Source Serif 4", serif;
+      font-size: 1.38rem;
+      line-height: 1.24;
+      color: var(--heading);
+      margin-bottom: 0.45rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .research-area-title::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 1.2em;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--accent) 0%, rgba(63, 95, 123, 0.35) 100%);
+      flex-shrink: 0;
+    }
+
+    .research-area-intro {
+      max-width: 62rem;
+      color: var(--muted);
+      line-height: 1.68;
+      margin-bottom: 0.7rem;
+    }
+
+    .research-placeholder {
+      max-width: 62rem;
+      padding: 1.2rem 1.3rem;
+      border: 1px dashed rgba(63, 95, 123, 0.32);
+      background: rgba(63, 95, 123, 0.04);
+      color: var(--muted);
+    }
+
+    .research-list {
+      list-style: none;
+      display: grid;
+      gap: 0;
+    }
+
+    .research-list > .research-entry {
+      padding: 2.8rem 0 3rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .research-list > .research-entry:first-child {
+      padding-top: 2.2rem;
+    }
+
+    .research-list > .research-entry:last-child {
+      border-bottom: 0;
+      padding-bottom: 1rem;
+    }
+
+    .research-entry-kicker {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(63, 95, 123, 0.07);
+      border: 1px solid rgba(63, 95, 123, 0.18);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+
+    .research-entry-title {
+      font-family: "Source Serif 4", serif;
+      font-size: 1.24rem;
+      line-height: 1.42;
+      color: var(--heading);
+    }
+
+    .research-entry-links,
+    .research-entry-authors,
+    .research-entry-description {
+      max-width: 72ch;
+      margin-top: 0.45rem;
+    }
+
+    .research-venue-highlight {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.45rem;
+      max-width: 100%;
+      width: fit-content;
+      margin-top: 0.15rem;
+      margin-bottom: 0.24rem;
+      padding: 0.38rem 0.85rem;
+      border: 1px solid rgba(63, 95, 123, 0.22);
+      border-radius: var(--radius);
+      background: rgba(63, 95, 123, 0.06);
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 600;
+      line-height: 1.4;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .venue-name {
+      color: var(--heading);
+      font-weight: 700;
+    }
+
+    .venue-location {
+      color: var(--accent);
+    }
+
+    .venue-status {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .research-entry-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.2rem 0.8rem;
+      align-items: center;
+    }
+
+    .research-entry-authors strong {
+      color: var(--heading);
+    }
+
+    .research-entry-featured {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 44%) 160px;
+      grid-template-areas: "content media actions";
+      gap: 2.15rem;
+      align-items: start;
+    }
+
+    .research-entry-featured > * {
+      align-self: start;
+    }
+
+    .research-entry-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.72rem;
+      min-width: 0;
+      border-left: 3px solid rgba(63, 95, 123, 0.28);
+      padding-left: 1.1rem;
+    }
+
+    .research-entry-authors {
+      font-size: 0.96rem;
+      line-height: 1.62;
+    }
+
+    .research-entry-description {
+      margin: 0;
+      max-width: 72ch;
+      line-height: 1.74;
+    }
+
+    .research-entry-media,
+    .research-entry-actions {
+      width: 100%;
+    }
+
+    .research-entry-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    .research-action-button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.58rem;
+      width: 100%;
+      min-height: 40px;
+      padding: 0.54rem 0.9rem;
+      border: 1px solid rgba(63, 95, 123, 0.45);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.91rem;
+      letter-spacing: 0.01em;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .research-action-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.2em;
+      height: 1.2em;
+      flex-shrink: 0;
+    }
+
+    .research-action-icon svg {
+      width: 100%;
+      height: 100%;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .research-action-button:hover,
+    .research-action-button:focus-visible {
+      border-color: var(--accent);
+      background: rgba(63, 95, 123, 0.09);
+      color: var(--heading);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .research-slider {
+      display: flex;
+      flex-direction: column;
+      gap: 0.62rem;
+    }
+
+    .research-slider-viewport {
+      border: 1px solid rgba(213, 219, 225, 0.95);
+      border-radius: var(--radius);
+      background: #fbfcfd;
+      overflow: hidden;
+      padding: 0.8rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .research-slider-viewport figure {
+      display: none;
+      flex-direction: column;
+      margin: 0;
+    }
+
+    .research-slide.is-active {
+      display: flex;
+    }
+
+    .research-slide img {
+      width: 100%;
+      height: auto;
+      max-height: 300px;
+      object-fit: contain;
+      display: block;
+      background: #f5f7f8;
+    }
+
+    .research-slide figcaption {
+      margin-top: 0.78rem;
+      padding: 0.8rem 0.15rem 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.58;
+      background: transparent;
+    }
+
+    .research-slider-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-top: 0.42rem;
+    }
+
+    .research-slider-buttons,
+    .research-slider-dots {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .research-slider-button,
+    .research-slider-dot {
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--heading);
+      font: inherit;
+      cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .research-slider-button {
+      padding: 0.26rem 0.62rem;
+      min-width: 3.9rem;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .research-slider-dot {
+      width: 0.56rem;
+      height: 0.56rem;
+      padding: 0;
+      border-radius: 999px;
+    }
+
+    .research-slider-button:hover,
+    .research-slider-button:focus-visible,
+    .research-slider-dot:hover,
+    .research-slider-dot:focus-visible,
+    .research-slider-dot.is-active {
+      border-color: var(--accent);
+      background: rgba(63, 95, 123, 0.08);
+      color: var(--accent);
+    }
+
+    .site-footer {
+      padding: 0 0 2.5rem;
+    }
+
+    .footer-copy {
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    /* ── Grid-area names for responsive reflow ── */
+    .research-entry-content { grid-area: content; }
+    .research-entry-media   { grid-area: media;   }
+    .research-entry-actions { grid-area: actions; }
+
+    /* ── Primary action button variant ── */
+    .research-action-button--primary {
+      border-color: rgba(63, 95, 123, 0.55);
+      background: rgba(63, 95, 123, 0.09);
+      font-weight: 700;
+    }
+
+    .research-action-button--primary:hover,
+    .research-action-button--primary:focus-visible {
+      border-color: var(--accent);
+      background: rgba(63, 95, 123, 0.15);
+    }
+
+    /* ── Slide image zoom cursor ── */
+    .research-slide img {
+      cursor: zoom-in;
+      transition: opacity 0.15s ease;
+    }
+
+    .research-slide img:hover {
+      opacity: 0.9;
+    }
+
+    /* ── Back to top ── */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.6rem;
+      height: 2.6rem;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--surface);
+      color: var(--muted);
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(0.5rem);
+      transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .back-to-top.is-visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      color: var(--accent);
+      border-color: rgba(63, 95, 123, 0.45);
+    }
+
+    .back-to-top svg {
+      width: 1rem;
+      height: 1rem;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── Lightbox ── */
+    .lightbox-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(18, 24, 30, 0.92);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .lightbox-overlay.is-open {
+      display: flex;
+    }
+
+    .lightbox-img {
+      max-width: min(92vw, 1100px);
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 0.5rem;
+      box-shadow: 0 8px 48px rgba(0, 0, 0, 0.5);
+      pointer-events: none;
+      display: block;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.4rem;
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0.3rem 0.5rem;
+      border-radius: 0.4rem;
+      transition: color 0.15s ease;
+    }
+
+    .lightbox-close:hover {
+      color: #fff;
+    }
+
+    /* ── Year + authorship kicker badges ── */
+    .entry-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .entry-year {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(63, 95, 123, 0.07);
+      border: 1px solid rgba(63, 95, 123, 0.18);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .entry-first-author {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(22, 101, 52, 0.08);
+      border: 1px solid rgba(22, 101, 52, 0.22);
+      color: #166534;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .research-area-count {
+      font-family: "Source Sans 3", sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      background: rgba(63, 95, 123, 0.07);
+      border: 1px solid rgba(63, 95, 123, 0.14);
+      border-radius: 999px;
+      padding: 0.08rem 0.55rem;
+      vertical-align: middle;
+      margin-left: 0.35rem;
+    }
+
+    .research-entry-supervisor {
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-style: italic;
+      max-width: 72ch;
+      margin-top: 0;
+    }
+
+    .research-entry-description.is-collapsed {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .abstract-toggle {
+      display: inline-block;
+      margin-top: 0.22rem;
+      background: none;
+      border: none;
+      padding: 0;
+      color: var(--accent);
+      font: inherit;
+      font-size: 0.88rem;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 0.18em;
+      text-decoration-thickness: 1px;
+    }
+
+    .abstract-toggle:hover {
+      color: var(--heading);
+    }
+
+    @media (max-width: 960px) and (min-width: 761px) {
+      .research-entry-featured {
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 40%);
+        grid-template-areas:
+          "content media"
+          "actions  media";
+        grid-template-rows: auto 1fr;
+      }
+
+      .research-entry-actions {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+        align-self: start;
+      }
+
+      .research-entry-actions .research-action-button {
+        flex: 0 0 auto;
+        width: auto;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(calc(100% - 1.25rem), var(--max-width));
+      }
+
+      .nav-bar {
+        min-height: auto;
+        padding: 0.9rem 0 0.7rem;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        gap: 0.45rem 1rem;
+      }
+
+      .nav-dropdown-menu {
+        left: 0;
+        width: min(16rem, calc(100vw - 2.5rem));
+        transform: translateY(0.75rem);
+      }
+
+      .nav-dropdown[open] > .nav-dropdown-menu,
+      .nav-dropdown:hover > .nav-dropdown-menu,
+      .nav-dropdown:focus-within > .nav-dropdown-menu {
+        transform: translateY(0);
+      }
+
+      main {
+        padding-top: 2.5rem;
+      }
+
+      .research-slider-controls {
+        justify-content: center;
+      }
+
+      .research-entry-featured {
+        grid-template-columns: 1fr;
+      }
+
+      .research-entry-actions {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .research-action-button {
+        flex: 1 1 min(45%, 160px);
+      }
+
+      .research-slider-viewport {
+        min-height: 260px;
+      }
+
+      .research-entry-content {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav-bar" aria-label="Primary">
+        <a class="brand" href="index.html">Nichula Wasalathilaka</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li>
+            <details class="nav-dropdown" data-nav-dropdown>
+              <summary class="nav-dropdown-summary">Research</summary>
+              <div class="nav-dropdown-menu">
+                <ul>
+                  <li><a href="#remote-sensing">Remote Sensing</a></li>
+                  <li><a href="#medical-imaging-research">Medical Imaging</a></li>
+                  <li><a href="#systems-modeling">Systems Modeling</a></li>
+                  <li><a class="is-current" href="#research-all">All</a></li>
+                </ul>
+              </div>
+            </details>
+          </li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <header class="page-header">
+        <span class="page-kicker">Research</span>
+        <h1 class="page-title">Research</h1>
+        <p class="page-intro">Selected research work spanning trustworthy medical AI, remote sensing, and scientific computing.</p>
+        <p style="margin-top:0.9rem;font-size:0.93rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.35rem 0.9rem;align-items:center;">
+          <span style="font-weight:700;color:var(--heading);">7 papers</span>
+          <span style="color:var(--line);">·</span>
+          <span><strong style="color:var(--heading);">3 as first author</strong></span>
+          <span style="color:var(--line);">·</span>
+          <span>MICCAI &times;2 &nbsp;&bull;&nbsp; IEEE J-STARS &nbsp;&bull;&nbsp; IGARSS &times;2 &nbsp;&bull;&nbsp; ICIIS &nbsp;&bull;&nbsp; IEEE Mercon</span>
+        </p>
+      </header>
+
+      <section class="section" id="research-all" aria-labelledby="research-section-title">
+        <h2 class="section-title" id="research-section-title">Research</h2>
+        <div class="research-area" id="remote-sensing">
+          <h3 class="research-area-title">Remote Sensing <span class="research-area-count">4</span></h3>
+          <p class="research-area-intro">Selected work on remote-sensing segmentation, semantic change detection, visual state-space models, diffusion-based augmentation, and robust change detection.</p>
+          <ol class="research-list">
+            <li class="research-entry">
+              <article class="research-entry research-entry-featured" id="visual-ssm-benchmark-igarss-2026">
+                <div class="research-entry-content">
+                  <div class="entry-meta">
+                    <span class="entry-year">2026</span>
+                    <span class="entry-first-author">First Author</span>
+                  </div>
+                  <h3 class="research-entry-title">A Controlled Benchmark of Visual State-Space Backbones with Domain-Shift and Boundary Analysis for Remote-Sensing Segmentation</h3>
+                  <p class="research-venue-highlight">
+                    <span class="venue-name">IEEE International Geoscience and Remote Sensing Symposium (IGARSS) 2026</span>
+                    <span class="venue-location">Washington, DC, USA</span>
+                    <span class="venue-status">Accepted</span>
+                  </p>
+                  <p class="research-entry-authors"><strong>Nichula Wasalathilaka</strong>, Dineth Perea, Oshadha Samarakoon, Buddhi Wijenayake, Roshan Godaliyadda, Vijitha Herath, Parakrama Ekanayake</p>
+                  <p class="research-entry-description">This work presents a controlled benchmark of visual state-space model backbones for remote-sensing semantic segmentation. Instead of changing multiple pipeline components, the study fixes the decoder, training protocol, feature interface, loss, preprocessing, and evaluation setup while varying only the encoder backbone. The benchmark compares VMamba, MambaVision, and Spatial-Mamba on LoveDA and ISPRS Potsdam, analyzing in-domain accuracy, cross-domain robustness, boundary sensitivity, and practical efficiency. The results show that robustness under domain shift is backbone-dependent and asymmetric, while boundary delineation remains a major failure mode.</p>
+                </div>
+
+              <div class="research-entry-media">
+                <div class="research-slider" data-slider aria-label="Figure slider for Visual State-Space Backbone Benchmark for Remote-Sensing Segmentation">
+                  <div class="research-slider-viewport">
+                    <figure class="research-slide is-active">
+                      <img src="images/research/igarss2026_vss_benchmark_pipeline.png" alt="Controlled benchmark pipeline connecting visual state-space backbones through a unified 4-stage feature pyramid and lightweight U-Net decoder." loading="lazy" />
+                      <figcaption>Controlled benchmark pipeline. All backbones are connected through a unified 4-stage feature pyramid and evaluated with the same lightweight U-Net decoder.</figcaption>
+                    </figure>
+                    <figure class="research-slide">
+                      <img src="images/research/igarss2026_vss_benchmark_qualitative.png" alt="Qualitative comparison on LoveDA and ISPRS Potsdam showing domain-shift behavior, boundary delineation, and segmentation differences across visual SSM backbones." loading="lazy" />
+                      <figcaption>Qualitative comparison on LoveDA Dataset.</figcaption>
+                    </figure>
+                    <figure class="research-slide">
+                      <img src="images/research/igarss2026_vss_benchmark_efficiency.png" alt="Efficiency analysis on LoveDA comparing mIoU and inference throughput across VMamba, MambaVision, and Spatial-Mamba backbones." loading="lazy" />
+                      <figcaption>Efficiency analysis on LoveDA Dataset.</figcaption>
+                    </figure>
+                  </div>
+
+                  <div class="research-slider-controls">
+                    <div class="research-slider-buttons" aria-label="Slider navigation buttons">
+                      <button class="research-slider-button" type="button" data-slider-prev aria-label="Show previous figure">Prev</button>
+                      <button class="research-slider-button" type="button" data-slider-next aria-label="Show next figure">Next</button>
+                    </div>
+                    <div class="research-slider-dots" aria-label="Figure navigation dots">
+                      <button class="research-slider-dot is-active" type="button" data-slider-dot aria-label="Show figure 1" aria-current="true"></button>
+                      <button class="research-slider-dot" type="button" data-slider-dot aria-label="Show figure 2" aria-current="false"></button>
+                      <button class="research-slider-dot" type="button" data-slider-dot aria-label="Show figure 3" aria-current="false"></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="research-entry-actions">
+                <a class="research-action-button research-action-button--primary" href="https://arxiv.org/pdf/2604.18721" target="_blank" rel="noopener noreferrer" aria-label="Read the full IGARSS 2026 paper">
+                  <span class="research-action-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+                      <polyline points="13 2 13 9 20 9"/>
+                      <line x1="9" y1="12" x2="15" y2="12"/>
+                      <line x1="9" y1="16" x2="15" y2="16"/>
+                    </svg>
+                  </span>
+                  <span>Paper</span>
+                </a>
+                <a class="research-action-button" href="https://github.com/Dineth14/Mamba-Segmentation" target="_blank" rel="noopener noreferrer" aria-label="View code on GitHub">
+                  <span class="research-action-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.343-3.369-1.343-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.89 1.529 2.341 1.546 2.914 1.185.09-.92.35-1.546.636-1.9-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                    </svg>
+                  </span>
+                  <span>GitHub</span>
+                </a>
+              </div>
+            </article>
+          </li>
+          <li class="research-entry">
+            <article class="research-entry research-entry-featured" id="loveda-diffusion-augmentation-igarss-2026">
+              <div class="research-entry-content">
+                <div class="entry-meta">
+                  <span class="entry-year">2026</span>
+                </div>
+                <h3 class="research-entry-title">Mitigating Long-Tail Bias in LoveDA via Prompt-Controlled Diffusion Augmentation</h3>
+                <p class="research-venue-highlight">
+                  <span class="venue-name">IEEE International Geoscience and Remote Sensing Symposium (IGARSS) 2026</span>
+                  <span class="venue-location">Washington, DC, USA</span>
+                  <span class="venue-status">Accepted</span>
+                </p>
+                <p class="research-entry-authors">Buddhi Wijenayake, <strong>Nichula Wasalathilaka</strong>, Roshan Godaliyadda, Vijitha Herath, Parakrama Ekanayake, Vishal M. Patel</p>
+                <p class="research-entry-description">This work addresses long-tail class imbalance in LoveDA semantic segmentation using prompt-controlled diffusion augmentation. The framework first generates domain-aware semantic layouts with class-ratio control using discrete diffusion, then translates those layouts into photorealistic remote-sensing images using Stable Diffusion with ControlNet guidance. By mixing the generated Urban and Rural image-label pairs with real training data, the method improves segmentation performance across multiple backbones, with gains concentrated on minority classes and cross-domain generalization.</p>
+              </div>
+
+              <div class="research-entry-media">
+                <div class="research-slider" data-slider aria-label="Figure slider for LoveDA Prompt-Controlled Diffusion Augmentation">
+                  <div class="research-slider-viewport">
+                    <figure class="research-slide is-active">
+                      <img src="images/research/dataset.jpg" alt="Dataset balancing and prompt-controllable synthesis on LoveDA with targeted Urban and Rural semantic ratios." loading="lazy" />
+                      <figcaption>Dataset balancing and prompt-controllable synthesis on LoveDA. The framework increases minority-class exposure while generating domain-consistent Urban and Rural image-label pairs with targeted semantic ratios.</figcaption>
+                    </figure>
+                    <figure class="research-slide">
+                      <img src="images/research/stageA.jpg" alt="Stage A domain- and ratio-conditioned discrete diffusion for semantic layout generation on LoveDA." loading="lazy" />
+                      <figcaption>Stage A: domain- and ratio-conditioned discrete diffusion for semantic layout generation. A denoising U-Net generates label maps conditioned on Urban/Rural domain information and class-ratio targets.</figcaption>
+                    </figure>
+                    <figure class="research-slide">
+                      <img src="images/research/stageB.jpg" alt="Stage B layout-guided latent diffusion for translating generated semantic layouts into photorealistic remote-sensing images." loading="lazy" />
+                      <figcaption>Stage B: layout-guided latent diffusion for image synthesis. Stable Diffusion with ControlNet guidance translates generated semantic layouts into photorealistic remote-sensing images.</figcaption>
+                    </figure>
+                  </div>
+
+                  <div class="research-slider-controls">
+                    <div class="research-slider-buttons" aria-label="Slider navigation buttons">
+                      <button class="research-slider-button" type="button" data-slider-prev aria-label="Show previous figure">Prev</button>
+                      <button class="research-slider-button" type="button" data-slider-next aria-label="Show next figure">Next</button>
+                    </div>
+                    <div class="research-slider-dots" aria-label="Figure navigation dots">
+                      <button class="research-slider-dot is-active" type="button" data-slider-dot aria-label="Show figure 1" aria-current="true"></button>
+                      <button class="research-slider-dot" type="button" data-slider-dot aria-label="Show figure 2" aria-current="false"></button>
+                      <button class="research-slider-dot" type="button" data-slider-dot aria-label="Show figure 3" aria-current="false"></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="research-entry-actions">
+                <a class="research-action-button research-action-button--primary" href="https://arxiv.org/abs/2602.04749" target="_blank" rel="noopener noreferrer" aria-label="Read the full IGARSS 2026 paper">
+                  <span class="research-action-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+                      <polyline points="13 2 13 9 20 9"/>
+                      <line x1="9" y1="12" x2="15" y2="12"/>
+                      <line x1="9" y1="16" x2="15" y2="16"/>
+                    </svg>
+                  </span>
+                  <span>Paper</span>
+                </a>
+                <a class="research-action-button" href="#" aria-label="GitHub repository coming soon">
+                  <span class="research-action-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.343-3.369-1.343-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.89 1.529 2.341 1.546 2.914 1.185.09-.92.35-1.546.636-1.9-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                    </svg>
+                  </span>
+                  <span>GitHub</span>
+                </a>
+              </div>
+            </article>
+          </li>
+          <li class="research-entry">
+            <article class="research-entry research-entry-featured" id="mamba-fcs-jstars-2026">
+              <div class="research-entry-content">
+                <div class="entry-meta">
+                  <span class="entry-year">2026</span>
+                </div>
+                <h3 class="research-entry-title">Mamba-FCS: Joint Spatio-Frequency Feature Fusion, Change-Guided Attention, and SeK Inspired Loss for Enhanced Semantic Change Detection in Remote Sensing</h3>
+                <p class="research-venue-highlight">
+                  <span class="venue-name">IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing</span>
+                  <span class="venue-status">Published</span>
+                </p>
+                <p class="research-entry-authors">Buddhi Wijenayake, Athulya Ratnayake, Praveen Sumanasekara, Roshan Godaliyadda, Parakrama Ekanayake, Vijitha Herath, <strong>Nichula Wasalathilaka</strong></p>
+                <p class="research-entry-description">Mamba-FCS is a semantic change detection framework for remote sensing imagery built on a Visual State Space Model backbone. It introduces joint spatio-frequency feature fusion to combine spatial and frequency-domain cues, a Change-Guided Attention module to connect binary and semantic change detection, and a SeK-inspired loss to improve learning under class imbalance. Experiments on SECOND and Landsat-SCD show improved semantic change detection performance, especially for boundary refinement and rare land-cover transitions.</p>
+              </div>
+
+              <div class="research-entry-media">
+                <div class="research-slider" data-slider aria-label="Figure slider for Mamba-FCS: Joint Spatio-Frequency Feature Fusion for Semantic Change Detection">
+                  <div class="research-slider-viewport">
+                    <figure class="research-slide is-active">
+                      <img src="images/research/mambafcs_overview_architecture.jpg" alt="Overview of the Mamba-FCS architecture for semantic change detection, with a shared VMamba encoder, binary change decoder, and two semantic map decoders." loading="lazy" />
+                      <figcaption>Overview of the Mamba-FCS architecture for semantic change detection, with a shared VMamba encoder, binary change decoder, and two semantic map decoders.</figcaption>
+                    </figure>
+                    <figure class="research-slide">
+                      <img src="images/research/mambafcs_fusion_decoder.jpg" alt="Joint spatio-frequency feature fusion and binary change decoding. Frequency-domain cues, spatial features, and difference maps are fused to improve semantic change detection." loading="lazy" />
+                      <figcaption>Joint spatio-frequency feature fusion and binary change decoding. Frequency-domain cues, spatial features, and difference maps are fused to improve semantic change detection.</figcaption>
+                    </figure>
+                    <figure class="research-slide">
+                      <img src="images/research/mambafcs_qualitative_ablation.jpg" alt="Qualitative ablation showing the impact of the frequency branch. Frequency-domain cues improve edge precision and reduce hallucinated semantic changes." loading="lazy" />
+                      <figcaption>Qualitative ablation showing the impact of the frequency branch.</figcaption>
+                    </figure>
+                  </div>
+
+                  <div class="research-slider-controls">
+                    <div class="research-slider-buttons" aria-label="Slider navigation buttons">
+                      <button class="research-slider-button" type="button" data-slider-prev aria-label="Show previous figure">Prev</button>
+                      <button class="research-slider-button" type="button" data-slider-next aria-label="Show next figure">Next</button>
+                    </div>
+                    <div class="research-slider-dots" aria-label="Figure navigation dots">
+                      <button class="research-slider-dot is-active" type="button" data-slider-dot aria-label="Show figure 1" aria-current="true"></button>
+                      <button class="research-slider-dot" type="button" data-slider-dot aria-label="Show figure 2" aria-current="false"></button>
+                      <button class="research-slider-dot" type="button" data-slider-dot aria-label="Show figure 3" aria-current="false"></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="research-entry-actions">
+                <a class="research-action-button research-action-button--primary" href="https://ieeexplore.ieee.org/document/11391528" target="_blank" rel="noopener noreferrer" aria-label="Read the full paper on IEEE Xplore">
+                  <span class="research-action-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+                      <polyline points="13 2 13 9 20 9"/>
+                      <line x1="9" y1="12" x2="15" y2="12"/>
+                      <line x1="9" y1="16" x2="15" y2="16"/>
+                    </svg>
+                  </span>
+                  <span>Paper</span>
+                </a>
+                <a class="research-action-button" href="https://github.com/Buddhi19/Mamba-FCS.git" target="_blank" rel="noopener noreferrer" aria-label="View code on GitHub">
+                  <span class="research-action-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.343-3.369-1.343-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.89 1.529 2.341 1.546 2.914 1.185.09-.92.35-1.546.636-1.9-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                    </svg>
+                  </span>
+                  <span>GitHub</span>
+                </a>
+              </div>
+            </article>
+          </li>
+          <li class="research-entry">
+            <article class="research-entry research-entry-featured" id="precision-spatiotemporal-fusion-iciis-2025">
+              <div class="research-entry-content">
+                <div class="entry-meta">
+                  <span class="entry-year">2025</span>
+                </div>
+                <h3 class="research-entry-title">Precision Spatio-Temporal Feature Fusion for Robust Remote Sensing Change Detection</h3>
+                <p class="research-venue-highlight">
+                  <span class="venue-name">2025 IEEE 19th International Conference on Industrial and Information Systems (ICIIS)</span>
+                  <span class="venue-location">Kandy, Sri Lanka</span>
+                  <span class="venue-status">Published</span>
+                </p>
+                <p class="research-entry-authors">Buddhi Wijenayake, Athulya Ratnayake, Praveen Sumanasekara, <strong>Nichula Wasalathilaka</strong>, Mathivathanan Piratheepan, Roshan Godaliyadda, Mervyn Ekanayake, Vijitha Herath</p>
+                <p class="research-entry-description">This work improves remote sensing binary change detection by extending ChangeMamba with precision fusion blocks for fine-grained temporal comparison, an enhanced decoder for preserving local detail, and a combined Cross Entropy, Lovasz, and Dice loss for class-imbalanced change masks. The method was evaluated on SYSU-CD, LEVIR-CD+, and WHU-CD, showing stronger change detection performance across multiple metrics.</p>
+              </div>
+
+              <div class="research-entry-media">
+                <div class="research-slider" data-slider aria-label="Figure slider for Precision Spatio-Temporal Feature Fusion for Robust Remote Sensing Change Detection">
+                  <div class="research-slider-viewport">
+                    <figure class="research-slide is-active">
+                      <img src="images/research/iciis2025_precision_spatiotemporal_qualitative.jpg" alt="Qualitative change detection results on LEVIR-CD+, SYSU-CD, and WHU-CD with correct predictions and error regions highlighted." loading="lazy" />
+                      <figcaption>Qualitative change detection results on LEVIR-CD+, SYSU-CD, and WHU-CD. White and black indicate correct predictions, while red and green highlight false positives and false negatives.</figcaption>
+                    </figure>
+                    <figure class="research-slide">
+                      <img src="images/research/iciis2025_precision_spatiotemporal_decoder.jpg" alt="Enhanced decoder with improved spatio-temporal state-space blocks for fine-grained binary change detection." loading="lazy" />
+                      <figcaption>Enhanced decoder with improved spatio-temporal state-space blocks for fine-grained binary change detection.</figcaption>
+                    </figure>
+                  </div>
+
+                  <div class="research-slider-controls">
+                    <div class="research-slider-buttons" aria-label="Slider navigation buttons">
+                      <button class="research-slider-button" type="button" data-slider-prev aria-label="Show previous figure">Prev</button>
+                      <button class="research-slider-button" type="button" data-slider-next aria-label="Show next figure">Next</button>
+                    </div>
+                    <div class="research-slider-dots" aria-label="Figure navigation dots">
+                      <button class="research-slider-dot is-active" type="button" data-slider-dot aria-label="Show figure 1" aria-current="true"></button>
+                      <button class="research-slider-dot" type="button" data-slider-dot aria-label="Show figure 2" aria-current="false"></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="research-entry-actions">
+                <a class="research-action-button research-action-button--primary" href="https://ieeexplore.ieee.org/document/11450773" target="_blank" rel="noopener noreferrer" aria-label="Read the full paper on IEEE Xplore">
+                  <span class="research-action-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+                      <polyline points="13 2 13 9 20 9"/>
+                      <line x1="9" y1="12" x2="15" y2="12"/>
+                      <line x1="9" y1="16" x2="15" y2="16"/>
+                    </svg>
+                  </span>
+                  <span>Paper</span>
+                </a>
+                <a class="research-action-button" href="https://github.com/Buddhi19/MambaCD.git" target="_blank" rel="noopener noreferrer" aria-label="View code on GitHub">
+                  <span class="research-action-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.343-3.369-1.343-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.89 1.529 2.341 1.546 2.914 1.185.09-.92.35-1.546.636-1.9-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                    </svg>
+                  </span>
+                  <span>GitHub</span>
+                </a>
+              </div>
+            </article>
+          </li>
+          </ol>
+        </div>
+
+        <div class="research-area" id="medical-imaging-research">
+          <h3 class="research-area-title">Medical Imaging <span class="research-area-count">2</span></h3>
+          <p class="research-area-intro">Selected work on trustworthy medical image analysis, medical image re-identification, anatomy-aware representation learning, and clinically auditable AI.</p>
+          <ol class="research-list">
+            <li class="research-entry">
+              <article class="research-entry research-entry-featured" id="graph-of-differences-miccai-2026">
+                <div class="research-entry-content">
+                  <div class="entry-meta">
+                    <span class="entry-year">2026</span>
+                    <span class="entry-first-author">First Author</span>
+                  </div>
+                  <h3 class="research-entry-title">Graph-of-Differences: Anatomy-Structured Difference Alignment for Medical Image Re-Identification</h3>
+                  <p class="research-venue-highlight">
+                    <span class="venue-name">MICCAI 2026</span>
+                    <span class="venue-location">Strasbourg, France</span>
+                    <span class="venue-status">Accepted</span>
+                  </p>
+                  <p class="research-entry-authors"><strong>Nichula Wasalathilaka</strong>, Abhijit Das, Imran Razzak, Dwarikanath Mahapatra</p>
+                  <p class="research-entry-supervisor">Research conducted at MBZUAI, Abu Dhabi &middot; Supervised by Prof. Imran Razzak &amp; Prof. Dwarikanath Mahapatra</p>
+                  <p class="research-entry-description">Graph-of-Differences introduces an anatomy-structured framework for medical image re-identification. Instead of comparing arbitrary visual tokens, the method represents each image as an anatomy graph with named anatomical nodes, establishes soft node correspondence across image pairs, and aligns anatomy-matched differences with the global backbone difference signal. This makes retrieval decisions more auditable by producing explanations over named anatomical structures rather than unstable pixel-level heatmaps. Experiments on fundus and chest X-ray benchmarks show improved Rank-1 and mAP over a strong frozen-backbone baseline, with additional zero-shot external transfer gains.</p>
+                </div>
+
+                <div class="research-entry-media">
+                  <div class="research-slider" data-slider aria-label="Figure slider for Graph-of-Differences: Anatomy-Structured Difference Alignment for Medical Image Re-Identification">
+                    <div class="research-slider-viewport">
+                      <figure class="research-slide is-active">
+                        <img src="images/research/Graph of Differences Arch.png" alt="Graph-of-Differences architecture overview" loading="lazy" />
+                        <figcaption>Overview of Graph-of-Differences. A frozen medical image re-identification backbone is combined with anatomy graph construction, graph encoding, soft node correspondence, and difference alignment for anatomy-grounded retrieval.</figcaption>
+                      </figure>
+                      <figure class="research-slide">
+                        <img src="images/research/god_cxr_anatomy_graph.jpg" alt="CXR anatomy graph construction for Graph-of-Differences" loading="lazy" />
+                        <figcaption>CXR anatomy graph construction using named anatomical regions such as lung boundary, lung interior, heart boundary, and heart interior. Node features are pooled from the frozen backbone feature map.</figcaption>
+                      </figure>
+                      <figure class="research-slide">
+                        <img src="images/research/god_explanations__cxr.png" alt="CXR anatomy-aware retrieval explanations" loading="lazy" />
+                        <figcaption>Chest X-ray anatomy-aware retrieval explanations. High-attribution graph nodes highlight named lung and heart structures that support correct or incorrect retrieval decisions.</figcaption>
+                      </figure>
+                      <figure class="research-slide">
+                        <img src="images/research/god_explanations_Fundes.jpg" alt="Fundus anatomy-aware retrieval explanations" loading="lazy" />
+                        <figcaption>Fundus anatomy-aware retrieval explanations. High-attribution graph nodes highlight optic disc, macula, vessel junctions, and anatomical anchor regions used for retrieval decisions.</figcaption>
+                      </figure>
+                    </div>
+
+                    <div class="research-slider-controls">
+                      <div class="research-slider-buttons" aria-label="Slider navigation buttons">
+                        <button class="research-slider-button" type="button" data-slider-prev aria-label="Show previous figure">Prev</button>
+                        <button class="research-slider-button" type="button" data-slider-next aria-label="Show next figure">Next</button>
+                      </div>
+                      <div class="research-slider-dots" aria-label="Figure navigation dots">
+                        <button class="research-slider-dot is-active" type="button" data-slider-dot aria-label="Show figure 1" aria-current="true"></button>
+                        <button class="research-slider-dot" type="button" data-slider-dot aria-label="Show figure 2" aria-current="false"></button>
+                        <button class="research-slider-dot" type="button" data-slider-dot aria-label="Show figure 3" aria-current="false"></button>
+                        <button class="research-slider-dot" type="button" data-slider-dot aria-label="Show figure 4" aria-current="false"></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="research-entry-actions">
+                  <span class="research-action-button" style="opacity:0.52;cursor:default;pointer-events:none;" aria-label="Preprint forthcoming">
+                    <span class="research-action-icon">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+                        <polyline points="13 2 13 9 20 9"/>
+                        <line x1="9" y1="12" x2="15" y2="12"/>
+                        <line x1="9" y1="16" x2="15" y2="16"/>
+                      </svg>
+                    </span>
+                    <span>Preprint Soon</span>
+                  </span>
+                  <span class="research-action-button" style="opacity:0.52;cursor:default;pointer-events:none;" aria-label="Code forthcoming">
+                    <span class="research-action-icon">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.343-3.369-1.343-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.89 1.529 2.341 1.546 2.914 1.185.09-.92.35-1.546.636-1.9-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                      </svg>
+                    </span>
+                    <span>Code Soon</span>
+                  </span>
+                </div>
+              </article>
+            </li>
+            <li class="research-entry">
+              <article class="research-entry research-entry-featured" id="proton-ood-miccai-2026">
+                <div class="research-entry-content">
+                  <div class="entry-meta">
+                    <span class="entry-year">2026</span>
+                  </div>
+                  <h3 class="research-entry-title">PROTON: Prototype-based Test-time Online OOD Detection for Medical Vision-Language Models</h3>
+                  <p class="research-venue-highlight">
+                    <span class="venue-name">MICCAI 2026</span>
+                    <span class="venue-location">Strasbourg, France</span>
+                    <span class="venue-status">Accepted</span>
+                  </p>
+                  <p class="research-entry-authors">Abhijit Das, <strong>Nichula Wasalathilaka</strong>, Yifan Lu, Adinath Dukre, Dwarikanath Mahapatra, Shadab Khan, Imran Razzak</p>
+                  <p class="research-entry-supervisor">Research conducted at MBZUAI, Abu Dhabi &middot; Supervised by Prof. Imran Razzak, Prof. Dwarikanath Mahapatra &amp; Prof. Shadab Khan</p>
+                  <p class="research-entry-description">Medical VLMs enable zero-shot clinical image classification, yet reliably detecting out-of-distribution (OOD) inputs at deployment remains an open problem. PROTON (PROtotype-based Test-time ONline OOD detection) is a lightweight post-hoc module that maintains an online prototype bank from high-confidence test predictions and adaptively fuses prototype distance with MCM scoring via stream-level variance statistics — requiring no model modification, training data, or prompt engineering. The approach exploits a structural mismatch overlooked by static scoring methods: covariate-shifted inputs are indistinguishable from in-distribution samples in softmax space, yet occupy distinct regions in the VLM's embedding space. On the full-spectrum ophthalmology benchmark (FLAIR + FIVES), PROTON improves MCM by +23.9 AUROC points on covariate shift, +8.8 on semantic shift, and +8.1 on far-OOD — the only zero-shot method to improve across all three shift types without hierarchical prompts or labeled data.</p>
+                </div>
+
+                <div class="research-entry-media">
+                  <div class="research-slider" data-slider aria-label="Figure slider for PROTON: Prototype-based Test-time Online OOD Detection">
+                    <div class="research-slider-viewport">
+                      <figure class="research-slide is-active">
+                        <img src="images/VLM OOD Architecture.png" alt="PROTON architecture overview showing prototype bank construction and adaptive fusion of prototype distance with MCM scoring for online OOD detection." loading="lazy" />
+                        <figcaption>PROTON architecture overview. A lightweight post-hoc module maintains an online prototype bank from high-confidence test predictions and adaptively fuses prototype distance with MCM scoring via stream-level variance statistics.</figcaption>
+                      </figure>
+                      <figure class="research-slide">
+                        <img src="images/fig_analysis.png" alt="Analysis of OOD score distributions across covariate, semantic, and far-OOD shift types, motivating the embedding-space prototype approach in PROTON." loading="lazy" />
+                        <figcaption>Analysis motivating PROTON. Covariate-shifted inputs are indistinguishable from in-distribution samples in softmax space but occupy distinct regions in the VLM's embedding space, which the prototype bank exploits.</figcaption>
+                      </figure>
+                    </div>
+
+                    <div class="research-slider-controls">
+                      <div class="research-slider-buttons" aria-label="Slider navigation buttons">
+                        <button class="research-slider-button" type="button" data-slider-prev aria-label="Show previous figure">Prev</button>
+                        <button class="research-slider-button" type="button" data-slider-next aria-label="Show next figure">Next</button>
+                      </div>
+                      <div class="research-slider-dots" aria-label="Figure navigation dots">
+                        <button class="research-slider-dot is-active" type="button" data-slider-dot aria-label="Show figure 1" aria-current="true"></button>
+                        <button class="research-slider-dot" type="button" data-slider-dot aria-label="Show figure 2" aria-current="false"></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="research-entry-actions">
+                  <span class="research-action-button" style="opacity:0.52;cursor:default;pointer-events:none;" aria-label="Preprint forthcoming">
+                    <span class="research-action-icon">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+                        <polyline points="13 2 13 9 20 9"/>
+                        <line x1="9" y1="12" x2="15" y2="12"/>
+                        <line x1="9" y1="16" x2="15" y2="16"/>
+                      </svg>
+                    </span>
+                    <span>Preprint Soon</span>
+                  </span>
+                  <span class="research-action-button" style="opacity:0.52;cursor:default;pointer-events:none;" aria-label="Code forthcoming">
+                    <span class="research-action-icon">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.343-3.369-1.343-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.89 1.529 2.341 1.546 2.914 1.185.09-.92.35-1.546.636-1.9-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                      </svg>
+                    </span>
+                    <span>Code Soon</span>
+                  </span>
+                </div>
+              </article>
+            </li>
+          </ol>
+        </div>
+
+        <div class="research-area" id="systems-modeling">
+          <h3 class="research-area-title">Systems Modeling <span class="research-area-count">1</span></h3>
+          <p class="research-area-intro">Selected work on parametric geometry generation, biomedical simulation, and reproducible computational workflows for pulmonary morphometry and airflow analysis.</p>
+          <ol class="research-list">
+            <li class="research-entry">
+              <article class="research-entry research-entry-featured" id="respgeomlib-mercon-2026">
+                <div class="research-entry-content">
+                  <div class="entry-meta">
+                    <span class="entry-year">2026</span>
+                    <span class="entry-first-author">First Author</span>
+                  </div>
+                  <h3 class="research-entry-title">RespGeomLib: A Reproducible Parametric Engine for Generating Analysis-Ready Human Airway Lumen Geometry</h3>
+                  <p class="research-venue-highlight">
+                    <span class="venue-name">IEEE Mercon 2026</span>
+                    <span class="venue-status">Accepted</span>
+                  </p>
+                  <p class="research-entry-authors"><strong>Nichula Wasalathilaka</strong>, Parakrama Ekanayaka, Roshan Godaliyadda</p>
+                  <p class="research-entry-description">CT-derived airway models support pulmonary morphometry and airflow simulation, but are often limited by distal scan resolution and the need for substantial cleanup near bifurcations. Procedural alternatives are reproducible, yet many rely on stitched tubular primitives that introduce non-smooth junctions and poorly defined open boundaries. RespGeomLib is a reproducible parametric engine for generating analysis-ready human airway lumen surfaces from compact YAML specifications. The framework combines port-based assembly with implicit smooth-min junction blending to produce seamless junctions, while avoiding full-tree voxelization through analytic segments and local implicit extraction around bifurcations. RespGeomLib yields cleaner junctions than a Boolean/stitch baseline and is substantially faster and more memory-efficient than whole-tree global implicit extraction. The engine further supports morphometry-guided tree generation, controlled synthetic airway variants, and CFD-ready export with stable airflow simulation.</p>
+                  <p class="research-entry-authors" style="margin-top:0.2rem;">
+                    Project website:
+                    <a href="https://nichula01.github.io/Respgeomlib/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--accent);">nichula01.github.io/Respgeomlib</a>
+                  </p>
+                </div>
+
+                <div class="research-entry-media">
+                  <div class="research-slider" data-slider aria-label="Figure slider for RespGeomLib: Parametric Airway Geometry Engine">
+                    <div class="research-slider-viewport">
+                      <figure class="research-slide is-active">
+                        <img src="images/fig1.png" alt="RespGeomLib overview: parametric airway tree generation from compact YAML specifications using port-based assembly." loading="lazy" />
+                        <figcaption>RespGeomLib overview: parametric airway tree assembly from compact YAML specifications. Port-based assembly drives the geometry generation pipeline.</figcaption>
+                      </figure>
+                      <figure class="research-slide">
+                        <img src="images/fig2.png" alt="Smooth-min implicit junction blending in RespGeomLib, producing seamless bifurcation surfaces without stitching artifacts." loading="lazy" />
+                        <figcaption>Implicit smooth-min junction blending produces seamless bifurcations, avoiding the non-smooth joints and poorly defined open boundaries common in stitched-primitive approaches.</figcaption>
+                      </figure>
+                      <figure class="research-slide">
+                        <img src="images/fig8_new.png" alt="Junction quality comparison: RespGeomLib vs Boolean/stitch baseline showing cleaner curvature at airway bifurcations." loading="lazy" />
+                        <figcaption>Junction quality comparison. RespGeomLib yields cleaner junction curvature than the Boolean/stitch baseline, improving mesh quality for morphometry and CFD simulation.</figcaption>
+                      </figure>
+                      <figure class="research-slide">
+                        <img src="images/fig9_new (1).png" alt="CFD-ready airway export with stable airflow simulation results generated by RespGeomLib." loading="lazy" />
+                        <figcaption>CFD-ready export and stable airflow simulation. RespGeomLib produces watertight, analysis-ready lumen geometry suitable for direct use in pulmonary airflow solvers.</figcaption>
+                      </figure>
+                    </div>
+
+                    <div class="research-slider-controls">
+                      <div class="research-slider-buttons" aria-label="Slider navigation buttons">
+                        <button class="research-slider-button" type="button" data-slider-prev aria-label="Show previous figure">Prev</button>
+                        <button class="research-slider-button" type="button" data-slider-next aria-label="Show next figure">Next</button>
+                      </div>
+                      <div class="research-slider-dots" aria-label="Figure navigation dots">
+                        <button class="research-slider-dot is-active" type="button" data-slider-dot aria-label="Show figure 1" aria-current="true"></button>
+                        <button class="research-slider-dot" type="button" data-slider-dot aria-label="Show figure 2" aria-current="false"></button>
+                        <button class="research-slider-dot" type="button" data-slider-dot aria-label="Show figure 3" aria-current="false"></button>
+                        <button class="research-slider-dot" type="button" data-slider-dot aria-label="Show figure 4" aria-current="false"></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="research-entry-actions">
+                  <a class="research-action-button research-action-button--primary" href="https://arxiv.org/abs/2606.19169" target="_blank" rel="noopener noreferrer" aria-label="Read the RespGeomLib preprint on arXiv">
+                    <span class="research-action-icon">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+                        <polyline points="13 2 13 9 20 9"/>
+                        <line x1="9" y1="12" x2="15" y2="12"/>
+                        <line x1="9" y1="16" x2="15" y2="16"/>
+                      </svg>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                  <a class="research-action-button" href="https://nichula01.github.io/Respgeomlib/" target="_blank" rel="noopener noreferrer" aria-label="Visit the RespGeomLib project website" style="border-color:rgba(63,95,123,0.65);background:rgba(63,95,123,0.07);font-weight:700;">
+                    <span class="research-action-icon">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="2" y1="12" x2="22" y2="12"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                      </svg>
+                    </span>
+                    <span>Website</span>
+                  </a>
+                  <a class="research-action-button" href="https://github.com/nichula01/RespGeomLib" target="_blank" rel="noopener noreferrer" aria-label="View RespGeomLib code on GitHub">
+                    <span class="research-action-icon">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.343-3.369-1.343-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.89 1.529 2.341 1.546 2.914 1.185.09-.92.35-1.546.636-1.9-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                      </svg>
+                    </span>
+                    <span>GitHub</span>
+                  </a>
+                </div>
+              </article>
+            </li>
+          </ol>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+  </button>
+
+  <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Figure preview">
+    <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close preview">&times;</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-copy">&copy; Nichula Sathmith Wasalathilaka</p>
+    </div>
+  </footer>
+
+  <script>
+    const navDropdown = document.querySelector("[data-nav-dropdown]");
+
+    if (navDropdown) {
+      const navSummary = navDropdown.querySelector(".nav-dropdown-summary");
+      const navMenuLinks = navDropdown.querySelectorAll(".nav-dropdown-menu a");
+
+      const closeNavDropdown = () => {
+        navDropdown.open = false;
+      };
+
+      navMenuLinks.forEach((link) => {
+        link.addEventListener("click", closeNavDropdown);
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!navDropdown.contains(event.target)) {
+          closeNavDropdown();
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && navDropdown.open) {
+          closeNavDropdown();
+          navSummary.focus();
+        }
+      });
+    }
+
+    document.querySelectorAll("[data-slider]").forEach((slider) => {
+      const slides = Array.from(slider.querySelectorAll(".research-slide"));
+      const dots = Array.from(slider.querySelectorAll("[data-slider-dot]"));
+      const prevButton = slider.querySelector("[data-slider-prev]");
+      const nextButton = slider.querySelector("[data-slider-next]");
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let currentIndex = 0;
+      let autoSlideId = null;
+
+      if (!slides.length) {
+        return;
+      }
+
+      const updateSlideState = () => {
+        slides.forEach((slide, slideIndex) => {
+          const isActive = slideIndex === currentIndex;
+          slide.classList.toggle("is-active", isActive);
+          slide.hidden = !isActive;
+        });
+
+        dots.forEach((dot, dotIndex) => {
+          const isActive = dotIndex === currentIndex;
+          dot.classList.toggle("is-active", isActive);
+          dot.setAttribute("aria-current", isActive ? "true" : "false");
+        });
+      };
+
+      const showSlide = (index, resetTimer = true) => {
+        currentIndex = (index + slides.length) % slides.length;
+        updateSlideState();
+        if (resetTimer) {
+          startAutoSlide();
+        }
+      };
+
+      const startAutoSlide = () => {
+        if (prefersReducedMotion || slides.length < 2) {
+          return;
+        }
+        clearInterval(autoSlideId);
+        autoSlideId = window.setInterval(() => showSlide(currentIndex + 1, false), 4000);
+      };
+
+      const stopAutoSlide = () => {
+        clearInterval(autoSlideId);
+      };
+
+      prevButton?.addEventListener("click", () => showSlide(currentIndex - 1));
+      nextButton?.addEventListener("click", () => showSlide(currentIndex + 1));
+      dots.forEach((dot, dotIndex) => {
+        dot.addEventListener("click", () => showSlide(dotIndex));
+      });
+
+      slider.addEventListener("mouseenter", stopAutoSlide);
+      slider.addEventListener("mouseleave", startAutoSlide);
+      slider.addEventListener("focusin", stopAutoSlide);
+      slider.addEventListener("focusout", startAutoSlide);
+
+      showSlide(0, false);
+      startAutoSlide();
+    });
+
+    // Back to top
+    const backToTopBtn = document.getElementById("back-to-top");
+    if (backToTopBtn) {
+      window.addEventListener("scroll", () => {
+        backToTopBtn.classList.toggle("is-visible", window.scrollY > 400);
+      }, { passive: true });
+      backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
+    // Lightbox
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const lightboxClose = document.getElementById("lightbox-close");
+
+    if (lightbox && lightboxImg) {
+      const openLightbox = (src, alt) => {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || "";
+        lightbox.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+      };
+
+      const closeLightbox = () => {
+        lightbox.classList.remove("is-open");
+        document.body.style.overflow = "";
+        lightboxImg.src = "";
+      };
+
+      document.querySelectorAll(".research-slide img").forEach((img) => {
+        img.addEventListener("click", () => openLightbox(img.src, img.alt));
+      });
+
+      lightboxClose?.addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && lightbox.classList.contains("is-open")) closeLightbox();
+      });
+    }
+
+    document.querySelectorAll(".research-entry-description").forEach((desc) => {
+      desc.classList.add("is-collapsed");
+      const btn = document.createElement("button");
+      btn.className = "abstract-toggle";
+      btn.type = "button";
+      btn.textContent = "Read more";
+      btn.addEventListener("click", () => {
+        const collapsed = desc.classList.toggle("is-collapsed");
+        btn.textContent = collapsed ? "Read more" : "Show less";
+      });
+      desc.insertAdjacentElement("afterend", btn);
+    });
+  </script>
+</body>
+</html>

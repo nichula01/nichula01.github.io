@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publications | Nichula Sathmith Wasalathilaka</title>
+  <meta name="description" content="Full publication list for Nichula Sathmith Wasalathilaka — 7 papers across MICCAI, IEEE J-STARS, IGARSS, ICIIS, and IEEE Mercon." />
+  <meta name="author" content="Nichula Sathmith Wasalathilaka" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#f8f6f1" />
+  <link rel="icon" href="images/nichula_2.jpg" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="images/nichula_2.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f8f6f1;
+      --surface: #ffffff;
+      --text: #23303b;
+      --heading: #18212a;
+      --muted: #5f6a75;
+      --accent: #3f5f7b;
+      --line: #d5dbe1;
+      --radius: 0.65rem;
+      --max-width: 1180px;
+      --shadow-sm: 0 1px 3px rgba(24, 33, 42, 0.06), 0 1px 6px rgba(24, 33, 42, 0.04);
+      --shadow-md: 0 4px 16px rgba(24, 33, 42, 0.09), 0 1px 4px rgba(24, 33, 42, 0.05);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: "Source Sans 3", sans-serif; background: var(--bg); color: var(--text); line-height: 1.72; }
+    img { display: block; max-width: 100%; }
+    a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+    a:hover { color: var(--heading); }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    .container { width: min(calc(100% - 2rem), var(--max-width)); margin: 0 auto; }
+
+    /* ── Nav ── */
+    .site-header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(248, 246, 241, 0.94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    }
+    .nav-bar { min-height: 4.4rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .brand { font-family: "Source Serif 4", serif; font-size: 1.16rem; line-height: 1.2; letter-spacing: -0.02em; color: var(--heading); text-decoration: none; }
+    .nav-links { list-style: none; display: flex; flex-wrap: wrap; gap: 0.8rem 1.25rem; align-items: center; }
+    .nav-links > li { position: relative; }
+    .nav-links a { display: inline-flex; align-items: center; min-height: 2.5rem; color: var(--muted); text-decoration: none; transition: color 0.18s ease; }
+    .nav-links a:hover, .nav-links a:focus-visible, .nav-links a.is-active { color: var(--heading); text-decoration: underline; }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-summary {
+      display: inline-flex; align-items: center; gap: 0.45rem; min-height: 2.5rem;
+      color: var(--muted); cursor: pointer; font: inherit; list-style: none; text-decoration: none;
+    }
+    .nav-dropdown-summary::-webkit-details-marker { display: none; }
+    .nav-dropdown-summary:hover, .nav-dropdown-summary:focus-visible,
+    .nav-dropdown[open] > .nav-dropdown-summary { color: var(--heading); }
+    .nav-dropdown-summary::after {
+      content: ""; width: 0.5rem; height: 0.5rem;
+      border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+      transform: rotate(45deg) translateY(-0.08rem); transform-origin: 50% 50%; transition: transform 0.2s ease;
+    }
+    .nav-dropdown[open] > .nav-dropdown-summary::after,
+    .nav-dropdown:hover > .nav-dropdown-summary::after,
+    .nav-dropdown:focus-within > .nav-dropdown-summary::after { transform: rotate(225deg) translateY(-0.02rem); }
+    .nav-dropdown-menu {
+      position: absolute; top: calc(100% + 0.8rem); left: 0; z-index: 30;
+      width: clamp(14.5rem, 24vw, 17.5rem); padding: 0.55rem;
+      border: 1px solid var(--line); border-radius: 1.25rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(248,246,241,0.98) 100%);
+      box-shadow: 0 18px 42px rgba(24,33,42,0.1);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transform: translateY(0.75rem); transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    }
+    .nav-dropdown-menu::before {
+      content: ""; display: block; height: 0.18rem; margin: 0.2rem 0 0.5rem; border-radius: 999px;
+      background: linear-gradient(90deg, rgba(63,95,123,0.12) 0%, rgba(63,95,123,0.52) 45%, rgba(63,95,123,0.12) 100%);
+    }
+    .nav-dropdown[open] > .nav-dropdown-menu,
+    .nav-dropdown:hover > .nav-dropdown-menu,
+    .nav-dropdown:focus-within > .nav-dropdown-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); }
+    .nav-dropdown-menu ul { list-style: none; display: grid; gap: 0.2rem; }
+    .nav-dropdown-menu a {
+      display: block; padding: 0.85rem 1rem; border: 1px solid transparent; border-radius: 0.95rem;
+      color: var(--heading); font-size: 0.97rem; font-weight: 600; line-height: 1.35; text-decoration: none;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+    .nav-dropdown-menu a:hover, .nav-dropdown-menu a:focus-visible {
+      border-color: rgba(63,95,123,0.16); background: rgba(63,95,123,0.08); transform: translateY(-1px);
+    }
+
+    /* ── Page layout ── */
+    main { padding: 3rem 0; }
+
+    .page-header { padding-bottom: 2rem; border-bottom: 1px solid var(--line); }
+    .page-kicker { display: block; margin-bottom: 0.7rem; color: var(--accent); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .page-title { font-family: "Source Serif 4", serif; font-size: clamp(2.1rem, 4vw, 3.2rem); line-height: 1.08; letter-spacing: -0.03em; color: var(--heading); }
+    .page-intro { max-width: 44rem; margin-top: 0.9rem; color: var(--muted); }
+    .page-stats { margin-top: 0.9rem; font-size: 0.93rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 0.35rem 0.9rem; align-items: center; }
+    .page-stats strong { color: var(--heading); }
+
+    /* ── Bibliography ── */
+    .pub-year-section { margin-top: 2.8rem; }
+    .pub-year-section + .pub-year-section { padding-top: 2rem; border-top: 1px solid var(--line); }
+
+    .pub-year-label {
+      font-family: "Source Serif 4", serif; font-size: 1.38rem; color: var(--heading);
+      margin-bottom: 0.2rem; display: inline-block; padding-bottom: 0.4rem;
+      border-bottom: 2px solid rgba(63, 95, 123, 0.22);
+    }
+
+    .pub-bib-list { list-style: none; display: grid; gap: 0; }
+
+    .pub-bib-entry {
+      display: grid; grid-template-columns: 1.8rem 1fr; gap: 0 1rem;
+      padding: 1.5rem 0; border-bottom: 1px solid var(--line);
+    }
+    .pub-bib-entry:last-child { border-bottom: 0; }
+
+    .pub-bib-entry--first-author .pub-bib-body {
+      border-left: 3px solid rgba(22, 101, 52, 0.32);
+      padding-left: 1rem;
+    }
+
+    .pub-bib-number { font-size: 0.88rem; font-weight: 700; color: var(--muted); padding-top: 0.1rem; text-align: right; font-variant-numeric: tabular-nums; }
+
+    .pub-bib-body { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+
+    .pub-bib-badges { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.1rem; }
+
+    .badge {
+      display: inline-flex; align-items: center; padding: 0.14rem 0.58rem;
+      border-radius: 999px; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.5;
+    }
+    .badge--year    { background: rgba(63,95,123,0.07);  border: 1px solid rgba(63,95,123,0.18);  color: var(--accent); }
+    .badge--first-author { background: rgba(22,101,52,0.08); border: 1px solid rgba(22,101,52,0.22); color: #166534; }
+    .badge--accepted { background: rgba(63,95,123,0.07); border: 1px solid rgba(63,95,123,0.18); color: var(--accent); }
+    .badge--published { background: rgba(24,33,42,0.05); border: 1px solid rgba(24,33,42,0.12); color: var(--muted); }
+
+    .pub-bib-title { font-family: "Source Serif 4", serif; font-size: 1.06rem; line-height: 1.44; color: var(--heading); font-weight: 600; }
+
+    .pub-bib-authors { font-size: 0.93rem; color: var(--muted); line-height: 1.58; }
+    .pub-bib-authors strong { color: var(--text); font-weight: 600; }
+
+    .pub-bib-venue { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+    .pub-bib-venue .venue-short { font-weight: 700; font-style: normal; color: var(--accent); }
+
+    .pub-bib-links { display: flex; flex-wrap: wrap; gap: 0.38rem; margin-top: 0.25rem; }
+
+    .pub-link {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      padding: 0.2rem 0.72rem; border: 1px solid rgba(63,95,123,0.3);
+      border-radius: 999px; background: var(--surface); color: var(--accent);
+      text-decoration: none; font-size: 0.82rem; font-weight: 600;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .pub-link:hover { border-color: var(--accent); background: rgba(63,95,123,0.08); color: var(--heading); transform: translateY(-1px); box-shadow: var(--shadow-md); text-decoration: none; }
+    .pub-link--primary { border-color: rgba(63,95,123,0.52); background: rgba(63,95,123,0.09); font-weight: 700; }
+    .pub-link--muted { border-color: var(--line); color: var(--muted); cursor: default; pointer-events: none; opacity: 0.5; box-shadow: none; }
+
+    /* ── Footer ── */
+    .site-footer { padding: 0 0 2.5rem; }
+    .footer-copy { padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.94rem; }
+
+    @media (max-width: 760px) {
+      .container { width: min(calc(100% - 1.25rem), var(--max-width)); }
+      .nav-bar { min-height: auto; padding: 0.9rem 0 0.7rem; align-items: flex-start; flex-direction: column; }
+      .nav-links { gap: 0.45rem 1rem; }
+      .nav-dropdown-menu { left: 0; width: min(16rem, calc(100vw - 2.5rem)); transform: translateY(0.75rem); }
+      .nav-dropdown[open] > .nav-dropdown-menu,
+      .nav-dropdown:hover > .nav-dropdown-menu,
+      .nav-dropdown:focus-within > .nav-dropdown-menu { transform: translateY(0); }
+      main { padding-top: 2.5rem; }
+      .pub-bib-entry { grid-template-columns: 1.5rem 1fr; gap: 0 0.65rem; }
+      .pub-bib-entry--first-author .pub-bib-body { padding-left: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav-bar" aria-label="Primary">
+        <a class="brand" href="index.html">Nichula Wasalathilaka</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li>
+            <details class="nav-dropdown" data-nav-dropdown>
+              <summary class="nav-dropdown-summary">Research</summary>
+              <div class="nav-dropdown-menu">
+                <ul>
+                  <li><a href="research.html#remote-sensing">Remote Sensing</a></li>
+                  <li><a href="research.html#medical-imaging-research">Medical Imaging</a></li>
+                  <li><a href="research.html#systems-modeling">Systems Modeling</a></li>
+                  <li><a href="research.html#research-all">All</a></li>
+                </ul>
+              </div>
+            </details>
+          </li>
+          <li><a class="is-active" href="publications.html">Publications</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <header class="page-header">
+        <span class="page-kicker">Bibliography</span>
+        <h1 class="page-title">Publications</h1>
+        <p class="page-intro">Complete peer-reviewed publication list. For visual summaries and paper figures, see the <a href="research.html">Research page</a>.</p>
+        <div class="page-stats">
+          <strong>7 papers</strong>
+          <span style="color:var(--line);">·</span>
+          <strong>3 as first author</strong>
+          <span style="color:var(--line);">·</span>
+          <span>MICCAI &times;2 &nbsp;&bull;&nbsp; IEEE J-STARS &nbsp;&bull;&nbsp; IGARSS &times;2 &nbsp;&bull;&nbsp; ICIIS &nbsp;&bull;&nbsp; IEEE Mercon</span>
+        </div>
+      </header>
+
+      <!-- ── 2026 ── -->
+      <div class="pub-year-section">
+        <h2 class="pub-year-label">2026</h2>
+        <ol class="pub-bib-list">
+
+          <li class="pub-bib-entry pub-bib-entry--first-author" id="pub-god-miccai-2026">
+            <span class="pub-bib-number">1</span>
+            <div class="pub-bib-body">
+              <div class="pub-bib-badges">
+                <span class="badge badge--year">2026</span>
+                <span class="badge badge--first-author">First Author</span>
+                <span class="badge badge--accepted">Accepted</span>
+              </div>
+              <p class="pub-bib-title">Graph-of-Differences: Anatomy-Structured Difference Alignment for Medical Image Re-Identification</p>
+              <p class="pub-bib-authors"><strong>Nichula Wasalathilaka</strong>, Abhijit Das, Imran Razzak, Dwarikanath Mahapatra</p>
+              <p class="pub-bib-venue"><span class="venue-short">MICCAI 2026</span> &mdash; Medical Image Computing and Computer Assisted Intervention, Strasbourg, France</p>
+              <div class="pub-bib-links">
+                <span class="pub-link pub-link--muted">Preprint Soon</span>
+                <span class="pub-link pub-link--muted">Code Soon</span>
+              </div>
+            </div>
+          </li>
+
+          <li class="pub-bib-entry" id="pub-proton-miccai-2026">
+            <span class="pub-bib-number">2</span>
+            <div class="pub-bib-body">
+              <div class="pub-bib-badges">
+                <span class="badge badge--year">2026</span>
+                <span class="badge badge--accepted">Accepted</span>
+              </div>
+              <p class="pub-bib-title">PROTON: Prototype-based Test-time Online OOD Detection for Medical Vision-Language Models</p>
+              <p class="pub-bib-authors">Abhijit Das, <strong>Nichula Wasalathilaka</strong>, Yifan Lu, Adinath Dukre, Dwarikanath Mahapatra, Shadab Khan, Imran Razzak</p>
+              <p class="pub-bib-venue"><span class="venue-short">MICCAI 2026</span> &mdash; Medical Image Computing and Computer Assisted Intervention, Strasbourg, France</p>
+              <div class="pub-bib-links">
+                <span class="pub-link pub-link--muted">Preprint Soon</span>
+                <span class="pub-link pub-link--muted">Code Soon</span>
+              </div>
+            </div>
+          </li>
+
+          <li class="pub-bib-entry pub-bib-entry--first-author" id="pub-vss-igarss-2026">
+            <span class="pub-bib-number">3</span>
+            <div class="pub-bib-body">
+              <div class="pub-bib-badges">
+                <span class="badge badge--year">2026</span>
+                <span class="badge badge--first-author">First Author</span>
+                <span class="badge badge--accepted">Accepted</span>
+              </div>
+              <p class="pub-bib-title">A Controlled Benchmark of Visual State-Space Backbones with Domain-Shift and Boundary Analysis for Remote-Sensing Segmentation</p>
+              <p class="pub-bib-authors"><strong>Nichula Wasalathilaka</strong>, Dineth Perea, Oshadha Samarakoon, Buddhi Wijenayake, Roshan Godaliyadda, Vijitha Herath, Parakrama Ekanayake</p>
+              <p class="pub-bib-venue"><span class="venue-short">IGARSS 2026</span> &mdash; IEEE International Geoscience and Remote Sensing Symposium, Washington, DC, USA</p>
+              <div class="pub-bib-links">
+                <a class="pub-link pub-link--primary" href="https://arxiv.org/pdf/2604.18721" target="_blank" rel="noopener noreferrer">arXiv</a>
+                <a class="pub-link" href="https://github.com/Dineth14/Mamba-Segmentation" target="_blank" rel="noopener noreferrer">GitHub</a>
+              </div>
+            </div>
+          </li>
+
+          <li class="pub-bib-entry" id="pub-loveda-igarss-2026">
+            <span class="pub-bib-number">4</span>
+            <div class="pub-bib-body">
+              <div class="pub-bib-badges">
+                <span class="badge badge--year">2026</span>
+                <span class="badge badge--accepted">Accepted</span>
+              </div>
+              <p class="pub-bib-title">Mitigating Long-Tail Bias in LoveDA via Prompt-Controlled Diffusion Augmentation</p>
+              <p class="pub-bib-authors">Buddhi Wijenayake, <strong>Nichula Wasalathilaka</strong>, Roshan Godaliyadda, Vijitha Herath, Parakrama Ekanayake, Vishal M. Patel</p>
+              <p class="pub-bib-venue"><span class="venue-short">IGARSS 2026</span> &mdash; IEEE International Geoscience and Remote Sensing Symposium, Washington, DC, USA</p>
+              <div class="pub-bib-links">
+                <a class="pub-link pub-link--primary" href="https://arxiv.org/abs/2602.04749" target="_blank" rel="noopener noreferrer">arXiv</a>
+              </div>
+            </div>
+          </li>
+
+          <li class="pub-bib-entry" id="pub-mambafcs-jstars-2026">
+            <span class="pub-bib-number">5</span>
+            <div class="pub-bib-body">
+              <div class="pub-bib-badges">
+                <span class="badge badge--year">2026</span>
+                <span class="badge badge--published">Published</span>
+              </div>
+              <p class="pub-bib-title">Mamba-FCS: Joint Spatio-Frequency Feature Fusion, Change-Guided Attention, and SeK Inspired Loss for Enhanced Semantic Change Detection in Remote Sensing</p>
+              <p class="pub-bib-authors">Buddhi Wijenayake, Athulya Ratnayake, Praveen Sumanasekara, Roshan Godaliyadda, Parakrama Ekanayake, Vijitha Herath, <strong>Nichula Wasalathilaka</strong></p>
+              <p class="pub-bib-venue"><span class="venue-short">IEEE J-STARS</span> &mdash; IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, 2026</p>
+              <div class="pub-bib-links">
+                <a class="pub-link pub-link--primary" href="https://ieeexplore.ieee.org/document/11391528" target="_blank" rel="noopener noreferrer">IEEE Xplore</a>
+                <a class="pub-link" href="https://github.com/Buddhi19/Mamba-FCS.git" target="_blank" rel="noopener noreferrer">GitHub</a>
+              </div>
+            </div>
+          </li>
+
+          <li class="pub-bib-entry pub-bib-entry--first-author" id="pub-respgeomlib-mercon-2026">
+            <span class="pub-bib-number">6</span>
+            <div class="pub-bib-body">
+              <div class="pub-bib-badges">
+                <span class="badge badge--year">2026</span>
+                <span class="badge badge--first-author">First Author</span>
+                <span class="badge badge--accepted">Accepted</span>
+              </div>
+              <p class="pub-bib-title">RespGeomLib: A Reproducible Parametric Engine for Generating Analysis-Ready Human Airway Lumen Geometry</p>
+              <p class="pub-bib-authors"><strong>Nichula Wasalathilaka</strong>, Parakrama Ekanayaka, Roshan Godaliyadda</p>
+              <p class="pub-bib-venue"><span class="venue-short">IEEE Mercon 2026</span> &mdash; Moratuwa Engineering Research Conference</p>
+              <div class="pub-bib-links">
+                <a class="pub-link pub-link--primary" href="https://arxiv.org/abs/2606.19169" target="_blank" rel="noopener noreferrer">arXiv</a>
+                <a class="pub-link" href="https://nichula01.github.io/Respgeomlib/" target="_blank" rel="noopener noreferrer">Website</a>
+                <a class="pub-link" href="https://github.com/nichula01/RespGeomLib" target="_blank" rel="noopener noreferrer">GitHub</a>
+              </div>
+            </div>
+          </li>
+
+        </ol>
+      </div>
+
+      <!-- ── 2025 ── -->
+      <div class="pub-year-section">
+        <h2 class="pub-year-label">2025</h2>
+        <ol class="pub-bib-list">
+
+          <li class="pub-bib-entry" id="pub-iciis-2025">
+            <span class="pub-bib-number">7</span>
+            <div class="pub-bib-body">
+              <div class="pub-bib-badges">
+                <span class="badge badge--year">2025</span>
+                <span class="badge badge--published">Published</span>
+              </div>
+              <p class="pub-bib-title">Precision Spatio-Temporal Feature Fusion for Robust Remote Sensing Change Detection</p>
+              <p class="pub-bib-authors">Buddhi Wijenayake, Athulya Ratnayake, Praveen Sumanasekara, <strong>Nichula Wasalathilaka</strong>, Mathivathanan Piratheepan, Roshan Godaliyadda, Mervyn Ekanayake, Vijitha Herath</p>
+              <p class="pub-bib-venue"><span class="venue-short">ICIIS 2025</span> &mdash; 19th IEEE International Conference on Industrial and Information Systems, Kandy, Sri Lanka</p>
+              <div class="pub-bib-links">
+                <a class="pub-link pub-link--primary" href="https://ieeexplore.ieee.org/document/11450773" target="_blank" rel="noopener noreferrer">IEEE Xplore</a>
+                <a class="pub-link" href="https://github.com/Buddhi19/MambaCD.git" target="_blank" rel="noopener noreferrer">GitHub</a>
+              </div>
+            </div>
+          </li>
+
+        </ol>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-copy">&copy; Nichula Sathmith Wasalathilaka</p>
+    </div>
+  </footer>
+
+  <script>
+    const navDropdown = document.querySelector("[data-nav-dropdown]");
+    if (navDropdown) {
+      const navSummary = navDropdown.querySelector(".nav-dropdown-summary");
+      const navMenuLinks = navDropdown.querySelectorAll(".nav-dropdown-menu a");
+      const closeNavDropdown = () => { navDropdown.open = false; };
+      navMenuLinks.forEach((link) => { link.addEventListener("click", closeNavDropdown); });
+      document.addEventListener("click", (event) => {
+        if (!navDropdown.contains(event.target)) closeNavDropdown();
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && navDropdown.open) {
+          closeNavDropdown();
+          navSummary.focus();
+        }
+      });
+    }
+  </script>
+</body>
+</html>

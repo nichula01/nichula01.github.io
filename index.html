@@ -70,7 +70,10 @@
       --accent: #3f5f7b;
       --date-accent: #8a5730;
       --line: #d5dbe1;
+      --radius: 0.65rem;
       --max-width: 1180px;
+      --shadow-sm: 0 1px 3px rgba(24, 33, 42, 0.06), 0 1px 6px rgba(24, 33, 42, 0.04);
+      --shadow-md: 0 4px 16px rgba(24, 33, 42, 0.09), 0 1px 4px rgba(24, 33, 42, 0.05);
     }
 
     * {
@@ -104,6 +107,7 @@
       text-decoration: underline;
       text-decoration-thickness: 1px;
       text-underline-offset: 0.18em;
+      transition: color 0.18s ease;
     }
 
     a:hover {
@@ -157,6 +161,7 @@
     .nav-links a {
       color: var(--muted);
       text-decoration: none;
+      transition: color 0.18s ease;
     }
 
     .nav-links a:hover,
@@ -170,23 +175,29 @@
       padding: 3rem 0 3rem;
     }
 
+    /* ── Hero ── */
     .hero {
       display: grid;
-      grid-template-columns: minmax(220px, 250px) minmax(0, 1fr);
-      gap: 2.75rem;
+      grid-template-columns: 210px minmax(0, 1fr);
+      gap: 3rem;
       align-items: start;
     }
 
+    /* Circular portrait with accent ring */
     .hero-portrait {
-      width: 100%;
-      max-width: 250px;
-      border: 1px solid var(--line);
+      width: 210px;
+      height: 210px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid rgba(63, 95, 123, 0.3);
+      box-shadow: 0 0 0 6px rgba(63, 95, 123, 0.09), var(--shadow-md);
       background: var(--surface);
     }
 
     .hero-portrait img {
       width: 100%;
-      aspect-ratio: 4 / 5;
+      height: 100%;
       object-fit: cover;
       object-position: center 18%;
     }
@@ -206,13 +217,15 @@
 
     .identity {
       font-size: 1.08rem;
-      color: var(--heading);
-      margin-bottom: 0.35rem;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 0.8rem;
     }
 
+    /* ── Affiliation cards ── */
     .affiliations {
       display: grid;
-      gap: 0.7rem;
+      gap: 0.6rem;
       margin-bottom: 1.3rem;
     }
 
@@ -221,11 +234,20 @@
       align-items: center;
       gap: 0.85rem;
       margin: 0;
-      padding: 0.7rem 0.9rem;
+      padding: 0.75rem 1rem;
       border-left: 3px solid var(--accent);
-      background: rgba(63, 95, 123, 0.08);
+      border-radius: var(--radius);
+      background: rgba(63, 95, 123, 0.06);
       color: var(--heading);
       line-height: 1.55;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+    }
+
+    .affiliation:hover {
+      transform: translateX(4px);
+      background: rgba(63, 95, 123, 0.1);
+      box-shadow: var(--shadow-md);
     }
 
     .affiliation-logo-box {
@@ -235,8 +257,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       border: 1px solid rgba(63, 95, 123, 0.12);
+      border-radius: 8px;
       padding: 0.35rem;
     }
 
@@ -248,6 +271,7 @@
 
     .affiliation-text {
       min-width: 0;
+      font-size: 0.97rem;
     }
 
     .intro {
@@ -258,16 +282,40 @@
       margin-top: 1rem;
     }
 
+    /* ── Research area pill tags ── */
     .research-areas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
       margin-top: 1rem;
-      color: var(--heading);
     }
 
+    .research-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.22rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(63, 95, 123, 0.08);
+      border: 1px solid rgba(63, 95, 123, 0.2);
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+    }
+
+    .research-tag:hover {
+      background: rgba(63, 95, 123, 0.14);
+      border-color: rgba(63, 95, 123, 0.38);
+      transform: translateY(-1px);
+    }
+
+    /* ── Profile link pill buttons ── */
     .profile-links {
       list-style: none;
       display: flex;
       flex-wrap: wrap;
-      gap: 0.45rem 1.1rem;
+      gap: 0.45rem;
       margin-top: 1.35rem;
       padding-top: 1rem;
       border-top: 1px solid var(--line);
@@ -276,15 +324,27 @@
     .profile-links a {
       display: inline-flex;
       align-items: center;
-      gap: 0.38rem;
+      gap: 0.42rem;
+      padding: 0.38rem 0.9rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
       color: var(--text);
       text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .profile-links a:hover,
     .profile-links a:focus-visible {
+      border-color: rgba(63, 95, 123, 0.45);
+      background: rgba(63, 95, 123, 0.07);
       color: var(--accent);
-      text-decoration: underline;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      text-decoration: none;
     }
 
     .profile-icon {
@@ -298,6 +358,7 @@
       stroke-linejoin: round;
     }
 
+    /* ── Sections ── */
     .section {
       margin-top: 3.75rem;
       padding-top: 1.35rem;
@@ -309,23 +370,54 @@
       font-size: 1.55rem;
       line-height: 1.2;
       color: var(--heading);
-      margin-bottom: 1.15rem;
+      margin-bottom: 1.35rem;
+      display: inline-block;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid rgba(63, 95, 123, 0.22);
     }
 
+    /* ── Timeline updates ── */
     .updates-list {
-      list-style: disc;
-      padding-left: 1.3rem;
+      list-style: none;
+      padding-left: 0;
       display: grid;
-      gap: 1rem;
+      gap: 0;
+      border-left: 2px solid rgba(63, 95, 123, 0.2);
+      margin-left: 0.55rem;
     }
 
-    .updates-list li::marker {
-      color: var(--muted);
+    .updates-list li {
+      position: relative;
+      padding: 0.1rem 0 1.5rem 1.6rem;
+    }
+
+    .updates-list li::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 0.6rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 2px rgba(63, 95, 123, 0.28);
+    }
+
+    .updates-list li:last-child {
+      padding-bottom: 0;
     }
 
     .update-date {
+      display: inline-block;
+      padding: 0.12rem 0.62rem;
+      border-radius: 999px;
+      background: rgba(138, 87, 48, 0.09);
+      border: 1px solid rgba(138, 87, 48, 0.22);
       color: var(--date-accent);
       font-weight: 700;
+      font-size: 0.87rem;
+      margin-bottom: 0.18rem;
     }
 
     .update-subitems {
@@ -355,6 +447,110 @@
       font-size: 0.94rem;
     }
 
+    /* ── Recent news highlight ── */
+    .updates-list li.is-recent::before {
+      width: 12px;
+      height: 12px;
+      left: -7px;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(63, 95, 123, 0.15), 0 0 10px rgba(63, 95, 123, 0.28);
+    }
+
+    .updates-list li.is-recent .update-date {
+      background: rgba(138, 87, 48, 0.14);
+      border-color: rgba(138, 87, 48, 0.38);
+    }
+
+    /* ── Selected publications strip ── */
+    .pub-list {
+      list-style: none;
+      display: grid;
+      gap: 0;
+    }
+
+    .pub-item {
+      padding: 1.05rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .pub-item:first-child {
+      padding-top: 0.3rem;
+    }
+
+    .pub-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .pub-item-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 0.38rem;
+    }
+
+    .pub-venue-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.15rem 0.62rem;
+      border-radius: 999px;
+      background: rgba(63, 95, 123, 0.07);
+      border: 1px solid rgba(63, 95, 123, 0.18);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .pub-first-author-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.15rem 0.62rem;
+      border-radius: 999px;
+      background: rgba(22, 101, 52, 0.08);
+      border: 1px solid rgba(22, 101, 52, 0.22);
+      color: #166534;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .pub-title-link {
+      display: block;
+      font-family: "Source Serif 4", serif;
+      font-size: 1.03rem;
+      line-height: 1.44;
+      color: var(--heading);
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.18s ease;
+    }
+
+    .pub-title-link:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .pub-authors {
+      margin-top: 0.2rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .pub-authors strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .pub-view-all {
+      margin-top: 0.9rem;
+      font-size: 0.93rem;
+      font-weight: 600;
+    }
+
     @media (max-width: 760px) {
       .container {
         width: min(calc(100% - 1.25rem), var(--max-width));
@@ -370,11 +566,16 @@
       }
 
       .hero-portrait {
-        max-width: 220px;
+        width: 160px;
+        height: 160px;
       }
 
       .section {
         margin-top: 3rem;
+      }
+
+      .updates-list {
+        margin-left: 0.35rem;
       }
     }
   </style>
@@ -387,6 +588,7 @@
         <ul class="nav-links">
           <li><a class="is-active" href="index.html">Home</a></li>
           <li><a href="research.html">Research</a></li>
+          <li><a href="publications.html">Publications</a></li>
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
       </nav>
@@ -413,14 +615,22 @@
               <span class="affiliation-logo-box" aria-hidden="true">
                 <img class="affiliation-logo" src="images/MBZUAI.png" alt="" />
               </span>
-              <p class="affiliation-text">Visiting Research Student at Mohamed bin Zayed University of Artificial Intelligence (MBZUAI)</p>
+              <p class="affiliation-text">Visiting Research Student at MBZUAI, Abu Dhabi &mdash; working with Prof. Imran Razzak on trustworthy medical AI</p>
             </div>
           </div>
 
           <div class="intro">
-            <p>I am a final-year Electrical and Electronic Engineering undergraduate at the University of Peradeniya, Sri Lanka, and a visiting research student at Mohamed bin Zayed University of Artificial Intelligence. My research interests lie at the intersection of remote sensing, medical artificial intelligence, computer vision, signal processing, and scientific machine learning.</p>
-            <p>My current work focuses on building reliable AI systems for real-world scientific and engineering problems, including satellite image understanding, medical image analysis, uncertainty-aware learning, foundation models, and dynamical modeling.</p>
-            <p class="research-areas">Remote Sensing &middot; Medical AI &middot; Computer Vision &middot; Signal Processing &middot; Trustworthy AI &middot; Scientific Machine Learning</p>
+            <p>I am a final-year Electrical and Electronic Engineering undergraduate at the University of Peradeniya, Sri Lanka, and a visiting research student at Mohamed bin Zayed University of Artificial Intelligence.</p>
+            <p>My research centres on a single question: <em>how do we make machine learning systems that scientists and clinicians can actually trust?</em> In remote sensing, that means building models that are robust to sensor and domain shift and that generalise reliably across geographic distributions. In medical imaging, it means detecting when a deployed model is operating outside its training distribution — and producing explanations over named anatomical structures rather than uninterpretable pixel-level heatmaps. In scientific computing, it means generating reproducible, simulation-ready geometry that can be audited and varied in a principled way. These threads converge on a broader programme: uncertainty-aware, distribution-robust AI for high-stakes scientific imaging.</p>
+            <p>I am actively seeking PhD positions for Fall 2027 to pursue this direction at depth.</p>
+            <div class="research-areas">
+              <span class="research-tag">Remote Sensing</span>
+              <span class="research-tag">Medical AI</span>
+              <span class="research-tag">Computer Vision</span>
+              <span class="research-tag">Signal Processing</span>
+              <span class="research-tag">Trustworthy AI</span>
+              <span class="research-tag">Scientific Machine Learning</span>
+            </div>
           </div>
 
           <ul class="profile-links" aria-label="Academic and professional links">
@@ -431,16 +641,6 @@
                   <path d="m4 8 8 6 8-6"></path>
                 </svg>
                 <span>Email</span>
-              </a>
-            </li>
-            <li>
-              <a href="cv/Nichula_Wasalathilaka_CV.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open curriculum vitae PDF">
-                <svg class="profile-icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M14 5h5v5"></path>
-                  <path d="M10 14 19 5"></path>
-                  <path d="M19 14v5h-14v-14h5"></path>
-                </svg>
-                <span>CV</span>
               </a>
             </li>
             <li>
@@ -476,10 +676,53 @@
         </div>
       </section>
 
+      <section class="section" id="selected-publications" aria-labelledby="pubs-title">
+        <h2 class="section-title" id="pubs-title">Selected Publications</h2>
+        <ol class="pub-list">
+          <li class="pub-item">
+            <div class="pub-item-chips">
+              <span class="pub-venue-chip">MICCAI 2026</span>
+              <span class="pub-first-author-chip">First Author</span>
+            </div>
+            <a class="pub-title-link" href="research.html#graph-of-differences-miccai-2026">Graph-of-Differences: Anatomy-Structured Difference Alignment for Medical Image Re-Identification</a>
+            <p class="pub-authors"><strong>Nichula Wasalathilaka</strong>, Abhijit Das, Imran Razzak, Dwarikanath Mahapatra</p>
+          </li>
+          <li class="pub-item">
+            <div class="pub-item-chips">
+              <span class="pub-venue-chip">MICCAI 2026</span>
+            </div>
+            <a class="pub-title-link" href="research.html#proton-ood-miccai-2026">PROTON: Prototype-based Test-time Online OOD Detection for Medical Vision-Language Models</a>
+            <p class="pub-authors">Abhijit Das, <strong>Nichula Wasalathilaka</strong>, Yifan Lu, Adinath Dukre, Dwarikanath Mahapatra, Shadab Khan, Imran Razzak</p>
+          </li>
+          <li class="pub-item">
+            <div class="pub-item-chips">
+              <span class="pub-venue-chip">IEEE J-STARS</span>
+              <span class="pub-venue-chip">Published</span>
+            </div>
+            <a class="pub-title-link" href="research.html#mamba-fcs-jstars-2026">Mamba-FCS: Joint Spatio-Frequency Feature Fusion, Change-Guided Attention, and SeK Inspired Loss for Enhanced Semantic Change Detection in Remote Sensing</a>
+            <p class="pub-authors">Buddhi Wijenayake, Athulya Ratnayake, Praveen Sumanasekara, Roshan Godaliyadda, Parakrama Ekanayake, Vijitha Herath, <strong>Nichula Wasalathilaka</strong></p>
+          </li>
+        </ol>
+        <p class="pub-view-all"><a href="research.html">View all 7 publications &rarr;</a></p>
+      </section>
+
       <section class="section" aria-labelledby="updates-title">
         <h2 class="section-title" id="updates-title">Updates ...</h2>
         <ul class="updates-list">
-          
+
+          <li class="is-recent">
+            <span class="update-date">Jun. 2026:</span> Two papers were accepted to <span class="update-venue">MICCAI 2026, Strasbourg, France</span>:
+            <div class="update-subitems">
+              <span>1. <em>Graph-of-Differences: Anatomy-Structured Difference Alignment for Medical Image Re-Identification</em></span>
+              <span>2. <em>PROTON: Prototype-based Test-time Online OOD Detection for Medical Vision-Language Models</em></span>
+            </div>
+          </li>
+          <li class="is-recent">
+            <span class="update-date">Jun. 2026:</span> Paper accepted to <span class="update-venue">IEEE Mercon 2026</span>:
+            <div class="update-subitems">
+              <span>1. <em>RespGeomLib: A Reproducible Parametric Engine for Generating Analysis-Ready Human Airway Lumen Geometry</em></span>
+            </div>
+          </li>
           <li>
             <span class="update-date">Mar. 19, 2026:</span> Two papers were accepted to <span class="update-venue">IGARSS 2026, Washington, D.C., USA</span>:
             <div class="update-subitems">
@@ -495,7 +738,8 @@
 
       <section class="section" id="contact" aria-labelledby="contact-title">
         <h2 class="section-title" id="contact-title">Contact</h2>
-        <p class="contact-copy">Email: <a href="mailto:e20425@eng.pdn.ac.lk" aria-label="Send email to e20425@eng.pdn.ac.lk">e20425@eng.pdn.ac.lk</a></p>
+        <p class="contact-copy">I expect to graduate in <strong>late 2026</strong> and am actively seeking <strong>PhD positions for Fall 2027</strong> in trustworthy AI, medical imaging, or remote sensing. I am happy to discuss research fit and potential collaboration.</p>
+        <p class="contact-copy" style="margin-top:0.7rem;">Email: <a href="mailto:e20425@eng.pdn.ac.lk" aria-label="Send email to e20425@eng.pdn.ac.lk">e20425@eng.pdn.ac.lk</a></p>
       </section>
     </div>
   </main>
