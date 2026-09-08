@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery | Nichula S. Wasalathilaka</title>
+  <meta name="description" content="Research presentations, posters, and conference moments from Nichula S. Wasalathilaka." />
+  <meta name="author" content="Nichula Sathmith Wasalathilaka" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="canonical" href="https://nichula01.github.io/gallery.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nichula Sathmith Wasalathilaka | Research Portfolio" />
+  <meta property="og:title" content="Gallery | Nichula S. Wasalathilaka" />
+  <meta property="og:description" content="Research presentations, posters, and conference moments from Nichula S. Wasalathilaka." />
+  <meta property="og:url" content="https://nichula01.github.io/gallery.html" />
+  <meta property="og:image" content="https://nichula01.github.io/assets/img/gallery/igarss-2026/poster-venue-closeup.jpg" />
+  <meta property="og:image:alt" content="The IGARSS 2026 controlled benchmark poster displayed at the conference venue" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Gallery | Nichula S. Wasalathilaka" />
+  <meta name="twitter:description" content="Research presentations, posters, and conference moments from Nichula S. Wasalathilaka." />
+  <meta name="twitter:image" content="https://nichula01.github.io/assets/img/gallery/igarss-2026/poster-venue-closeup.jpg" />
+  <link rel="icon" href="images/nichula_2.jpg" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="images/nichula_2.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <!-- The first gallery visual is rendered by gallery.js; preloading it keeps
+       the largest contentful paint from waiting on the JSON round-trip. -->
+  <link rel="preload" as="image" type="image/webp"
+        href="assets/img/gallery/igarss-2026/controlled-benchmark-poster-card.webp" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html">Nichula S. Wasalathilaka</a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+        <span data-nav-toggle-label>Menu</span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="index.html">Home</a></li>
+          <li><a class="site-nav__link" href="publications.html">Publications</a></li>
+          <li><a class="site-nav__link" href="gallery.html" aria-current="page">Gallery</a></li>
+          <!--
+            CV: cv/Nichula_Wasalathilaka_CV.pdf is not in this repository yet, so
+            this entry is inert rather than a link that 404s. When the PDF lands,
+            swap the <span> for:
+            <a class="site-nav__link" href="cv/Nichula_Wasalathilaka_CV.pdf">CV</a>
+          -->
+          <li><span class="site-nav__link is-unavailable" aria-disabled="true" title="CV coming soon">CV</span></li>
+          <li><a class="site-nav__link" href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ================= INTRO ================= -->
+    <section class="gallery-hero container" aria-labelledby="gallery-heading">
+      <span class="kicker">Visual archive</span>
+      <h1 class="gallery-hero__title" id="gallery-heading">Gallery</h1>
+      <p class="gallery-hero__lede">Research presentations, conference moments, posters, and visual records from my work.</p>
+    </section>
+
+    <!-- ================= ENTRIES ================= -->
+    <section class="gallery container" aria-labelledby="gallery-heading">
+
+      <!-- Filters are generated from data/gallery.json, so a category only ever
+           appears once it has a real entry behind it. -->
+      <div class="gallery-filters" data-gallery-filters role="group" aria-label="Filter gallery by category" hidden></div>
+
+      <div class="gallery-grid" data-gallery-grid></div>
+
+      <p class="gallery-status" data-gallery-status role="status">Loading gallery&hellip;</p>
+
+      <noscript>
+        <p class="gallery-status">
+          The gallery needs JavaScript to display its images. The poster itself is
+          available as a PDF:
+          <a href="assets/gallery/igarss-2026-controlled-benchmark-poster.pdf">IGARSS 2026 — Controlled Benchmark Poster</a>.
+        </p>
+      </noscript>
+
+      <p class="gallery-closing">A visual record of research, presentations, and conference moments.</p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="container site-footer__inner">
+      <p class="site-footer__name">Nichula S. Wasalathilaka</p>
+
+      <nav class="site-footer__links" aria-label="Profiles and contact">
+        <a href="https://scholar.google.com/citations?hl=en&amp;user=704xSSwAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+        <a href="https://github.com/nichula01" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/nichula-wasalathilaka/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <!-- Becomes a link once cv/Nichula_Wasalathilaka_CV.pdf exists. -->
+        <span class="is-unavailable">CV</span>
+        <a href="mailto:e20425@eng.pdn.ac.lk">Email</a>
+      </nav>
+
+      <p class="site-footer__copy">&copy; 2026</p>
+    </div>
+  </footer>
+
+  <!-- ================= LIGHTBOX ================= -->
+  <dialog class="glightbox" data-lightbox aria-label="Gallery image viewer">
+    <div class="glightbox__shell">
+      <button class="glightbox__close" type="button" data-lightbox-close aria-label="Close image viewer">
+        <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 3l10 10M13 3L3 13" /></svg>
+      </button>
+
+      <div class="glightbox__stage">
+        <ul class="glightbox__track" data-lightbox-track tabindex="0"
+            aria-roledescription="carousel" aria-label="Gallery images"></ul>
+
+        <button class="glightbox__arrow glightbox__arrow--prev" type="button" data-lightbox-prev aria-label="Previous image">
+          <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M10 2L4 8l6 6" /></svg>
+        </button>
+        <button class="glightbox__arrow glightbox__arrow--next" type="button" data-lightbox-next aria-label="Next image">
+          <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M6 2l6 6-6 6" /></svg>
+        </button>
+      </div>
+
+      <div class="glightbox__meta" data-lightbox-meta aria-live="polite">
+        <p class="glightbox__title" data-lightbox-title></p>
+        <p class="glightbox__caption" data-lightbox-caption></p>
+        <p class="glightbox__count" data-lightbox-count></p>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/gallery.js" defer></script>
+</body>
+</html>

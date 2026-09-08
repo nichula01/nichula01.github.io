@@ -1,0 +1,73 @@
+[
+  {
+    "id": "peradeniya",
+    "institution": "University of Peradeniya",
+    "city": "Peradeniya",
+    "country": "Sri Lanka",
+    "lat": 7.2549,
+    "lon": 80.5918,
+    "type": "institution",
+    "primary": true,
+    "role": "Primary institution",
+    "collaboratorsLabel": null,
+    "collaborators": [],
+    "papers": [
+      "Precision Spatio-Temporal Feature Fusion for Robust Remote Sensing Change Detection — ICIIS 2025"
+    ],
+    "source": "index.html: home institution. index.html updates + publications.html: ICIIS 2025 held at the Faculty of Engineering, University of Peradeniya, Sri Lanka."
+  },
+  {
+    "id": "mbzuai",
+    "institution": "MBZUAI",
+    "city": "Abu Dhabi",
+    "country": "United Arab Emirates",
+    "lat": 24.4539,
+    "lon": 54.3773,
+    "type": "institution",
+    "primary": true,
+    "role": "Visiting research student",
+    "collaboratorsLabel": "Supervisors",
+    "collaborators": ["Imran Razzak", "Dwarikanath Mahapatra", "Shadab Khan"],
+    "papers": [
+      "Graph-of-Differences — MICCAI 2026",
+      "PROTON — MICCAI 2026"
+    ],
+    "source": "index.html: visiting research student at MBZUAI, Abu Dhabi. research.html: both MICCAI 2026 papers stated as 'Research conducted at MBZUAI, Abu Dhabi', supervised by Prof. Imran Razzak, Prof. Dwarikanath Mahapatra and (PROTON) Prof. Shadab Khan."
+  },
+  {
+    "id": "miccai-2026",
+    "institution": "MICCAI 2026",
+    "city": "Strasbourg",
+    "country": "France",
+    "lat": 48.5734,
+    "lon": 7.7521,
+    "type": "venue",
+    "primary": false,
+    "role": "Conference venue",
+    "collaboratorsLabel": null,
+    "collaborators": [],
+    "papers": [
+      "Graph-of-Differences: Anatomy-Structured Difference Alignment for Medical Image Re-Identification",
+      "PROTON: Prototype-based Test-time Online OOD Detection for Medical Vision-Language Models"
+    ],
+    "source": "publications.html: 'MICCAI 2026 — Medical Image Computing and Computer Assisted Intervention, Strasbourg, France' for both papers."
+  },
+  {
+    "id": "igarss-2026",
+    "institution": "IGARSS 2026",
+    "city": "Washington, D.C.",
+    "country": "United States",
+    "lat": 38.9072,
+    "lon": -77.0369,
+    "type": "venue",
+    "primary": false,
+    "role": "Conference venue",
+    "collaboratorsLabel": null,
+    "collaborators": [],
+    "papers": [
+      "A Controlled Benchmark of Visual State-Space Backbones with Domain-Shift and Boundary Analysis for Remote-Sensing Segmentation",
+      "Mitigating Long-Tail Bias in LoveDA via Prompt-Controlled Diffusion Augmentation"
+    ],
+    "source": "publications.html: 'IGARSS 2026 — IEEE International Geoscience and Remote Sensing Symposium, Washington, DC, USA' for both papers."
+  }
+]

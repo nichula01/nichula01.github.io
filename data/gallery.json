@@ -1,0 +1,73 @@
+[
+  {
+    "id": "igarss-2026-controlled-benchmark",
+    "category": "Posters",
+    "year": 2026,
+    "featured": true,
+    "title": "IGARSS 2026 — Controlled Benchmark Poster",
+    "subtitle": "A Controlled Benchmark of Visual State-Space Backbones with Domain-Shift and Boundary Analysis for Remote-Sensing Segmentation",
+    "event": "IEEE IGARSS 2026",
+    "location": "Washington, D.C., USA",
+    "date": "9–14 August 2026",
+    "caption": "Poster presentation of our controlled benchmark of visual state-space backbones for remote-sensing segmentation at IEEE IGARSS 2026 in Washington, D.C.",
+    "frame": "3 / 2",
+    "images": [
+      {
+        "src": "assets/img/gallery/igarss-2026/controlled-benchmark-poster-card.webp",
+        "full": "assets/img/gallery/igarss-2026/controlled-benchmark-poster.webp",
+        "width": 1400,
+        "height": 683,
+        "fit": "contain",
+        "alt": "The conference poster \"A Controlled Benchmark of Visual State-Space Backbones with Domain-Shift and Boundary Analysis for Remote-Sensing Segmentation\", laid out in columns covering the research question, the controlled benchmark pipeline, quantitative results on LoveDA and ISPRS Potsdam, qualitative error comparisons, and accuracy-efficiency, domain-shift and boundary analyses.",
+        "caption": "Conference poster"
+      },
+      {
+        "src": "assets/img/gallery/igarss-2026/poster-venue-closeup.webp",
+        "full": "assets/img/gallery/igarss-2026/poster-venue-closeup.webp",
+        "width": 1024,
+        "height": 768,
+        "fit": "cover",
+        "position": "50% 60%",
+        "alt": "The printed poster mounted on a fabric board at the IGARSS 2026 venue, seen over the shoulder of a viewer standing in front of it.",
+        "caption": "Poster at the IGARSS 2026 venue"
+      },
+      {
+        "src": "assets/img/gallery/igarss-2026/poster-session.webp",
+        "full": "assets/img/gallery/igarss-2026/poster-session.webp",
+        "width": 1024,
+        "height": 768,
+        "fit": "cover",
+        "position": "50% 45%",
+        "alt": "A wider view of the IGARSS 2026 poster hall, with the controlled benchmark poster on the near board and further poster boards and attendees receding down the room.",
+        "caption": "IGARSS 2026 poster session"
+      }
+    ],
+    "links": {
+      "poster": "assets/gallery/igarss-2026-controlled-benchmark-poster.pdf",
+      "paper": "https://arxiv.org/pdf/2604.18721",
+      "code": "https://github.com/Dineth14/Mamba-Segmentation"
+    }
+  },
+  {
+    "id": "mercon-2026",
+    "category": "Conference Moments",
+    "year": 2026,
+    "title": "MERCon 2026",
+    "event": "Moratuwa Engineering Research Conference 2026",
+    "caption": "Conference moment from MERCon 2026, the Moratuwa Engineering Research Conference.",
+    "frame": "3 / 2",
+    "images": [
+      {
+        "src": "assets/img/gallery/mercon-2026/mercon-2026-nichula.webp",
+        "full": "assets/img/gallery/mercon-2026/mercon-2026-nichula.webp",
+        "width": 1198,
+        "height": 1280,
+        "fit": "cover",
+        "position": "60% 35%",
+        "alt": "Nichula S. Wasalathilaka standing beside the MERCon 2026 conference backdrop, which carries the Moratuwa Engineering Research Conference wordmark and the logos of the organising IEEE societies and partners.",
+        "caption": "At the MERCon 2026 conference backdrop"
+      }
+    ],
+    "links": {}
+  }
+]
