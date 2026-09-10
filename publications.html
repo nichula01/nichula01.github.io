@@ -130,24 +130,31 @@
     </section>
 
     <!-- ================= ARCHIVE ================= -->
-    <section class="pubs-archive container" aria-labelledby="archive-heading">
+    <section class="pubs-archive container" id="publication-list" aria-labelledby="archive-heading">
       <h2 class="visually-hidden" id="archive-heading">Publication list</h2>
 
       <!--
-        Hidden in the markup and revealed by assets/js/publications.js. Without
-        JavaScript no controls are offered and the complete list below is still
-        readable, in newest-first order.
-      -->
-      <div class="pubs-controls" data-pub-controls hidden>
-        <div class="pubs-filters" role="group" aria-label="Filter publications by research area">
-          <button class="pubs-filter" type="button" data-filter="all" aria-pressed="true">All</button>
-          <button class="pubs-filter" type="button" data-filter="medical-ai" aria-pressed="false">Medical AI</button>
-          <button class="pubs-filter" type="button" data-filter="remote-sensing" aria-pressed="false">Remote Sensing</button>
-          <button class="pubs-filter" type="button" data-filter="scientific-computing" aria-pressed="false">Scientific Computing</button>
-          <button class="pubs-filter" type="button" data-filter="preprint" aria-pressed="false">Preprints</button>
-        </div>
+        Section navigation, not a filter. These are real anchors to the three
+        research sections, so they work with JavaScript off and with the
+        browser's own back/forward. publications.js only marks which one the
+        reader is currently inside.
 
-        <div class="pubs-sort">
+        "Preprints" is deliberately absent: a preprint is a publication status,
+        carried by the row's own badge, not a research area.
+      -->
+      <div class="pubs-controls">
+        <nav class="pubs-nav" aria-label="Jump to a research area">
+          <a class="pubs-nav__link" href="#publication-list" data-section-link="all" aria-current="true">All</a>
+          <a class="pubs-nav__link" href="#medical-ai" data-section-link="medical-ai">Medical AI</a>
+          <a class="pubs-nav__link" href="#remote-sensing" data-section-link="remote-sensing">Remote Sensing</a>
+          <a class="pubs-nav__link" href="#scientific-computing" data-section-link="scientific-computing">Scientific Computing</a>
+        </nav>
+
+        <!--
+          Sorting is the one control that genuinely needs JavaScript, so unlike
+          the navigation above it stays hidden until the script runs.
+        -->
+        <div class="pubs-sort" data-pub-sort-wrap hidden>
           <label for="pub-sort">Sort</label>
           <select id="pub-sort" data-pub-sort>
             <option value="newest" selected>Newest first</option>
@@ -157,229 +164,280 @@
       </div>
 
       <!--
-        One row per publication, newest first. Every title, author list, author
-        order, venue, year and status below is carried over verbatim from the
-        previous publications.html; nothing has been reworded, reordered or
-        inferred. data-category drives the filter only.
+        Every publication on the page, grouped by research area. The three
+        sections below are the page's own structure, not a filtered view: no
+        entry is ever hidden, and the navigation above only moves the reader.
+
+        Every title, author list, author order, venue, year and status is
+        carried over verbatim; nothing has been reworded, reordered or
+        inferred. Each article keeps its data-category, which is what places
+        it in a section, and its data-year, which sorting reads.
 
         Teasers are crops of genuine figures already in this repository, built
         by tools/build-publication-teasers.ps1. They are placeholders for
         purpose-made teaser figures, not final artwork.
       -->
-      <div class="pub-list" data-pub-list>
+      <div class="pub-sections">
 
-        <!-- ── Graph-of-Differences — MICCAI 2026 ── -->
-        <article class="pub-item" id="pub-god-miccai-2026" data-category="medical-ai" data-year="2026">
-          <figure class="pub-item__figure">
-            <!-- TODO: replace with final publication teaser -->
-            <img src="assets/img/publications/graph-of-differences.jpg" width="640" height="384" decoding="async"
-                 alt="Chest X-ray retrieval explanations from Graph-of-Differences: two query radiographs beside their top retrievals, overlaid with coloured anatomy-graph nodes on the lung and heart regions." />
-          </figure>
+        <!-- =========== MEDICAL AI =========== -->
+        <section class="pub-section" id="medical-ai" aria-labelledby="medical-ai-heading">
+          <header class="pub-section__head">
+            <h2 class="pub-section__title" id="medical-ai-heading">
+              <span class="pub-section__num" aria-hidden="true">01</span>Medical AI
+            </h2>
+            <p class="pub-section__lede">Trustworthy learning for medical images and multimodal systems</p>
+          </header>
 
-          <div class="pub-item__body">
-            <p class="pub-badges">
-              <span class="pub-badge pub-badge--author">First author</span>
-            </p>
+          <div class="pub-list" data-pub-list>
 
-            <h3 class="pub-item__title">Graph-of-Differences: Anatomy-Structured Difference Alignment for Medical Image Re-Identification</h3>
+            <!-- ── Graph-of-Differences — MICCAI 2026 ── -->
+            <article class="pub-item" id="pub-god-miccai-2026" data-category="medical-ai" data-year="2026">
+              <figure class="pub-item__figure">
+                <!-- TODO: replace with final unified teaser -->
+                <img src="assets/img/publications/graph-of-differences.jpg" width="640" height="384" decoding="async"
+                     alt="Chest X-ray retrieval explanations from Graph-of-Differences: two query radiographs beside their top retrievals, overlaid with coloured anatomy-graph nodes on the lung and heart regions." />
+              </figure>
 
-            <p class="pub-item__authors"><strong>Nichula Wasalathilaka</strong>, Abhijit Das, Imran Razzak, Dwarikanath Mahapatra</p>
+              <div class="pub-item__body">
+                <span class="pub-badge pub-badge--author">First author</span>
 
-            <p class="pub-item__venue">
-              <!-- TODO: no MICCAI logo file exists in this repository; textual mark until one is supplied. -->
-              <span class="pub-venue-brand"><span class="pub-venue-mark">MICCAI</span></span>
-              <span class="pub-venue-name">MICCAI 2026</span>
-              <span class="pub-venue-detail">Medical Image Computing and Computer Assisted Intervention, Strasbourg, France</span>
-              <span class="pub-venue-status">Accepted</span>
-            </p>
+                <h3 class="pub-item__title">Graph-of-Differences: Anatomy-Structured Difference Alignment for Medical Image Re-Identification</h3>
 
-            <!-- No code URL exists yet; that link is omitted rather than shown disabled. -->
-            <p class="pub-item__links">
-              <a href="https://arxiv.org/abs/2606.21368" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-external" /></svg>arXiv</a>
-            </p>
+                <p class="pub-item__authors"><strong>Nichula Wasalathilaka</strong>, Abhijit Das, Imran Razzak, Dwarikanath Mahapatra</p>
+
+                <p class="pub-item__venue">
+                  <!-- TODO: no MICCAI logo file exists in this repository and AGENTS.md rule 9 forbids
+                       adding one that is not already cleared. The bold venue name below carries the
+                       venue on its own until a logo is supplied; it used to be preceded by a boxed
+                       "MICCAI" mark, which simply restated it. -->
+                  <span class="pub-venue-name">MICCAI 2026</span>
+                  <span class="pub-venue-detail">Medical Image Computing and Computer Assisted Intervention, Strasbourg, France</span>
+                  <span class="pub-venue-status">Accepted</span>
+                </p>
+
+                <!-- No code URL exists yet; that link is omitted rather than shown disabled. -->
+                <p class="pub-item__links">
+                  <a href="https://arxiv.org/abs/2606.21368" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-external" /></svg>arXiv</a>
+                </p>
+              </div>
+            </article>
+
+            <!-- ── PROTON — MICCAI 2026 ── -->
+            <article class="pub-item" id="pub-proton-miccai-2026" data-category="medical-ai" data-year="2026">
+              <figure class="pub-item__figure">
+                <!-- TODO: replace with final unified teaser -->
+                <img src="assets/img/publications/proton.jpg" width="640" height="384" loading="lazy" decoding="async"
+                     alt="PROTON architecture: the vision and text pipelines of a frozen medical vision-language model feeding MCM scoring, an online prototype bank and a confidence gate." />
+              </figure>
+
+              <div class="pub-item__body">
+                <h3 class="pub-item__title">PROTON: Prototype-based Test-time Online OOD Detection for Medical Vision-Language Models</h3>
+
+                <p class="pub-item__authors">Abhijit Das, <strong>Nichula Wasalathilaka</strong>, Yifan Lu, Adinath Dukre, Dwarikanath Mahapatra, Shadab Khan, Imran Razzak</p>
+
+                <p class="pub-item__venue">
+                  <!-- TODO: no MICCAI logo file exists in this repository and AGENTS.md rule 9 forbids
+                       adding one that is not already cleared. The bold venue name below carries the
+                       venue on its own until a logo is supplied; it used to be preceded by a boxed
+                       "MICCAI" mark, which simply restated it. -->
+                  <span class="pub-venue-name">MICCAI 2026</span>
+                  <span class="pub-venue-detail">Medical Image Computing and Computer Assisted Intervention, Strasbourg, France</span>
+                  <span class="pub-venue-status">Accepted</span>
+                </p>
+
+                <!-- No code URL exists yet. -->
+                <p class="pub-item__links">
+                  <a href="https://arxiv.org/abs/2606.20913" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-external" /></svg>arXiv</a>
+                </p>
+              </div>
+            </article>
           </div>
-        </article>
+        </section>
 
-        <!-- ── PROTON — MICCAI 2026 ── -->
-        <article class="pub-item" id="pub-proton-miccai-2026" data-category="medical-ai" data-year="2026">
-          <figure class="pub-item__figure">
-            <!-- TODO: replace with final publication teaser -->
-            <img src="assets/img/publications/proton.jpg" width="640" height="384" loading="lazy" decoding="async"
-                 alt="PROTON architecture: the vision and text pipelines of a frozen medical vision-language model feeding MCM scoring, an online prototype bank and a confidence gate." />
-          </figure>
+        <!-- =========== REMOTE SENSING =========== -->
+        <section class="pub-section" id="remote-sensing" aria-labelledby="remote-sensing-heading">
+          <header class="pub-section__head">
+            <h2 class="pub-section__title" id="remote-sensing-heading">
+              <span class="pub-section__num" aria-hidden="true">02</span>Remote Sensing
+            </h2>
+            <p class="pub-section__lede">Robust visual learning for Earth observation</p>
+          </header>
 
-          <div class="pub-item__body">
-            <h3 class="pub-item__title">PROTON: Prototype-based Test-time Online OOD Detection for Medical Vision-Language Models</h3>
+          <div class="pub-list" data-pub-list>
 
-            <p class="pub-item__authors">Abhijit Das, <strong>Nichula Wasalathilaka</strong>, Yifan Lu, Adinath Dukre, Dwarikanath Mahapatra, Shadab Khan, Imran Razzak</p>
+            <!-- ── Controlled VSS benchmark — IGARSS 2026 ── -->
+            <article class="pub-item" id="pub-vss-igarss-2026" data-category="remote-sensing" data-year="2026">
+              <figure class="pub-item__figure">
+                <!-- TODO: replace with final unified teaser -->
+                <img src="assets/img/publications/vss-benchmark.jpg" width="640" height="384" loading="lazy" decoding="async"
+                     alt="Controlled benchmark pipeline: a LoveDA RGB tile entering three visual state-space encoder families through identical stems and downsampling stages." />
+              </figure>
 
-            <p class="pub-item__venue">
-              <!-- TODO: no MICCAI logo file exists in this repository; textual mark until one is supplied. -->
-              <span class="pub-venue-brand"><span class="pub-venue-mark">MICCAI</span></span>
-              <span class="pub-venue-name">MICCAI 2026</span>
-              <span class="pub-venue-detail">Medical Image Computing and Computer Assisted Intervention, Strasbourg, France</span>
-              <span class="pub-venue-status">Accepted</span>
-            </p>
+              <div class="pub-item__body">
+                <span class="pub-badge pub-badge--author">First author</span>
 
-            <!-- No code URL exists yet. -->
-            <p class="pub-item__links">
-              <a href="https://arxiv.org/abs/2606.20913" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-external" /></svg>arXiv</a>
-            </p>
+                <h3 class="pub-item__title">A Controlled Benchmark of Visual State-Space Backbones with Domain-Shift and Boundary Analysis for Remote-Sensing Segmentation</h3>
+
+                <p class="pub-item__authors"><strong>Nichula Wasalathilaka</strong>, Dineth Perea, Oshadha Samarakoon, Buddhi Wijenayake, Roshan Godaliyadda, Vijitha Herath, Parakrama Ekanayake</p>
+
+                <p class="pub-item__venue">
+                  <span class="pub-venue-brand"><img src="assets/img/venues/igarss.png" width="158" height="64" loading="lazy" decoding="async" alt="" /></span>
+                  <span class="pub-venue-name">IGARSS 2026</span>
+                  <span class="pub-venue-detail">IEEE International Geoscience and Remote Sensing Symposium, Washington, DC, USA</span>
+                  <span class="pub-venue-status">Accepted</span>
+                </p>
+
+                <p class="pub-item__links">
+                  <a href="https://arxiv.org/pdf/2604.18721" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-external" /></svg>arXiv</a>
+                  <a href="https://github.com/Dineth14/Mamba-Segmentation" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-code" /></svg>Code</a>
+                </p>
+              </div>
+            </article>
+
+            <!-- ── LoveDA long-tail augmentation — IGARSS 2026 ── -->
+            <article class="pub-item" id="pub-loveda-igarss-2026" data-category="remote-sensing" data-year="2026">
+              <figure class="pub-item__figure">
+                <!-- TODO: replace with final unified teaser -->
+                <!-- The paper's Stage B training figure (images/research/stageB.jpg), fitted whole. -->
+                <img src="assets/img/publications/loveda-longtail.jpg" width="640" height="384" loading="lazy" decoding="async"
+                     alt="Stage B of the prompt-controlled diffusion augmentation: a LoveDA semantic map and its class-share prompt feeding a ControlNet U-Net through CLIP and one-hot encoding, while the paired remote-sensing image is encoded by a frozen VAE and noised, the two meeting at a FiLM gate over the fine-tuned Stable Diffusion U-Net that is trained against the added noise." />
+              </figure>
+
+              <div class="pub-item__body">
+                <h3 class="pub-item__title">Mitigating Long-Tail Bias in LoveDA via Prompt-Controlled Diffusion Augmentation</h3>
+
+                <p class="pub-item__authors">Buddhi Wijenayake, <strong>Nichula Wasalathilaka</strong>, Roshan Godaliyadda, Vijitha Herath, Parakrama Ekanayake, Vishal M. Patel</p>
+
+                <p class="pub-item__venue">
+                  <span class="pub-venue-brand"><img src="assets/img/venues/igarss.png" width="158" height="64" loading="lazy" decoding="async" alt="" /></span>
+                  <span class="pub-venue-name">IGARSS 2026</span>
+                  <span class="pub-venue-detail">IEEE International Geoscience and Remote Sensing Symposium, Washington, DC, USA</span>
+                  <span class="pub-venue-status">Accepted</span>
+                </p>
+
+                <p class="pub-item__links">
+                  <a href="https://arxiv.org/abs/2602.04749" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-external" /></svg>arXiv</a>
+                </p>
+              </div>
+            </article>
+
+            <!-- ── Mamba-FCS — IEEE J-STARS ── -->
+            <article class="pub-item" id="pub-mambafcs-jstars-2026" data-category="remote-sensing" data-year="2026">
+              <figure class="pub-item__figure">
+                <!-- TODO: replace with final unified teaser -->
+                <img src="assets/img/publications/mamba-fcs.jpg" width="640" height="384" loading="lazy" decoding="async"
+                     alt="Mamba-FCS overview: pre-change and post-change satellite images entering the shared encoder and the three-branch semantic and binary change decoder." />
+              </figure>
+
+              <div class="pub-item__body">
+                <span class="pub-badge pub-badge--type">Journal</span>
+
+                <h3 class="pub-item__title">Mamba-FCS: Joint Spatio-Frequency Feature Fusion, Change-Guided Attention, and SeK Inspired Loss for Enhanced Semantic Change Detection in Remote Sensing</h3>
+
+                <p class="pub-item__authors">Buddhi Wijenayake, Athulya Ratnayake, Praveen Sumanasekara, Roshan Godaliyadda, Parakrama Ekanayake, Vijitha Herath, <strong>Nichula Wasalathilaka</strong></p>
+
+                <p class="pub-item__venue">
+                  <!-- images/jstars.png, the IEEE Geoscience and Remote Sensing Society mark that publishes J-STARS. -->
+                  <span class="pub-venue-brand"><img src="assets/img/venues/ieee-grss.png" width="99" height="64" loading="lazy" decoding="async" alt="" /></span>
+                  <span class="pub-venue-name">IEEE J-STARS &middot; 2026</span>
+                  <span class="pub-venue-detail">IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing</span>
+                  <span class="pub-venue-status">Published</span>
+                </p>
+
+                <p class="pub-item__links">
+                  <a href="https://ieeexplore.ieee.org/document/11391528" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-paper" /></svg>IEEE Xplore</a>
+                  <a href="https://github.com/Buddhi19/Mamba-FCS.git" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-code" /></svg>Code</a>
+                </p>
+              </div>
+            </article>
+
+            <!-- ── Precision spatio-temporal fusion — ICIIS 2025 ── -->
+            <article class="pub-item" id="pub-iciis-2025" data-category="remote-sensing" data-year="2025">
+              <figure class="pub-item__figure">
+                <!-- TODO: replace with final unified teaser -->
+                <!--
+                  The paper's qualitative comparison figure
+                  (images/research/iciis2025_precision_spatiotemporal_qualitative.jpg),
+                  content bounds fitted to the frame.
+
+                  TODO: the source figure carries no legend, so the alt text below
+                  describes the red and green overlay as disagreement with the
+                  ground truth without naming which colour is a missed detection
+                  and which a false alarm, and does not name the two prediction
+                  columns. Confirm both from the paper and tighten the wording.
+                -->
+                <img src="assets/img/publications/iciis-precision-stf.jpg" width="640" height="384" loading="lazy" decoding="async"
+                     alt="Qualitative change-detection results on three scenes, one per row: the pre-event and post-event satellite images, the ground-truth change map, and two predicted change maps in which agreement with the ground truth is white and the pixels that disagree with it are picked out in red and green." />
+              </figure>
+
+              <div class="pub-item__body">
+                <h3 class="pub-item__title">Precision Spatio-Temporal Feature Fusion for Robust Remote Sensing Change Detection</h3>
+
+                <p class="pub-item__authors">Buddhi Wijenayake, Athulya Ratnayake, Praveen Sumanasekara, <strong>Nichula Wasalathilaka</strong>, Mathivathanan Piratheepan, Roshan Godaliyadda, Mervyn Ekanayake, Vijitha Herath</p>
+
+                <p class="pub-item__venue">
+                  <span class="pub-venue-brand"><img src="assets/img/venues/iciis.png" width="93" height="64" loading="lazy" decoding="async" alt="" /></span>
+                  <span class="pub-venue-name">ICIIS 2025</span>
+                  <span class="pub-venue-detail">19th IEEE International Conference on Industrial and Information Systems, Kandy, Sri Lanka</span>
+                  <span class="pub-venue-status">Published</span>
+                </p>
+
+                <p class="pub-item__links">
+                  <a href="https://ieeexplore.ieee.org/document/11450773" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-paper" /></svg>IEEE Xplore</a>
+                  <a href="https://github.com/Buddhi19/MambaCD.git" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-code" /></svg>Code</a>
+                </p>
+              </div>
+            </article>
           </div>
-        </article>
+        </section>
 
-        <!-- ── Controlled VSS benchmark — IGARSS 2026 ── -->
-        <article class="pub-item" id="pub-vss-igarss-2026" data-category="remote-sensing" data-year="2026">
-          <figure class="pub-item__figure">
-            <!-- TODO: replace with final publication teaser -->
-            <img src="assets/img/publications/vss-benchmark.jpg" width="640" height="384" loading="lazy" decoding="async"
-                 alt="Controlled benchmark pipeline: a LoveDA RGB tile entering three visual state-space encoder families through identical stems and downsampling stages." />
-          </figure>
+        <!-- =========== SCIENTIFIC COMPUTING =========== -->
+        <section class="pub-section" id="scientific-computing" aria-labelledby="scientific-computing-heading">
+          <header class="pub-section__head">
+            <h2 class="pub-section__title" id="scientific-computing-heading">
+              <span class="pub-section__num" aria-hidden="true">03</span>Scientific Computing
+            </h2>
+            <p class="pub-section__lede">Machine learning and computational models for physical and biomedical systems</p>
+          </header>
 
-          <div class="pub-item__body">
-            <p class="pub-badges">
-              <span class="pub-badge pub-badge--author">First author</span>
-            </p>
+          <div class="pub-list" data-pub-list>
 
-            <h3 class="pub-item__title">A Controlled Benchmark of Visual State-Space Backbones with Domain-Shift and Boundary Analysis for Remote-Sensing Segmentation</h3>
+            <!-- ── RespGeomLib — IEEE Mercon 2026 ── -->
+            <article class="pub-item" id="pub-respgeomlib-mercon-2026" data-category="scientific-computing" data-year="2026">
+              <figure class="pub-item__figure">
+                <!-- TODO: replace with final unified teaser -->
+                <img src="assets/img/publications/respgeomlib.jpg" width="640" height="384" loading="lazy" decoding="async"
+                     alt="A CT-derived airway reconstruction that breaks into distal fragments, beside a RespGeomLib procedural airway with smooth branching at every junction." />
+              </figure>
 
-            <p class="pub-item__authors"><strong>Nichula Wasalathilaka</strong>, Dineth Perea, Oshadha Samarakoon, Buddhi Wijenayake, Roshan Godaliyadda, Vijitha Herath, Parakrama Ekanayake</p>
+              <div class="pub-item__body">
+                <span class="pub-badge pub-badge--author">First author</span>
 
-            <p class="pub-item__venue">
-              <span class="pub-venue-brand"><img src="assets/img/venues/igarss.png" width="158" height="64" loading="lazy" decoding="async" alt="" /></span>
-              <span class="pub-venue-name">IGARSS 2026</span>
-              <span class="pub-venue-detail">IEEE International Geoscience and Remote Sensing Symposium, Washington, DC, USA</span>
-              <span class="pub-venue-status">Accepted</span>
-            </p>
+                <h3 class="pub-item__title">RespGeomLib: A Reproducible Parametric Engine for Generating Analysis-Ready Human Airway Lumen Geometry</h3>
 
-            <p class="pub-item__links">
-              <a href="https://arxiv.org/pdf/2604.18721" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-external" /></svg>arXiv</a>
-              <a href="https://github.com/Dineth14/Mamba-Segmentation" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-code" /></svg>Code</a>
-            </p>
+                <p class="pub-item__authors"><strong>Nichula Wasalathilaka</strong>, Parakrama Ekanayaka, Roshan Godaliyadda</p>
+
+                <p class="pub-item__venue">
+                  <!-- TODO: no IEEE Mercon logo file exists in this repository and AGENTS.md rule 9 forbids
+                       adding one that is not already cleared. The bold venue name below carries the
+                       venue on its own until a logo is supplied; it used to be preceded by a boxed
+                       "Mercon" mark, which simply restated it. -->
+                  <span class="pub-venue-name">IEEE Mercon 2026</span>
+                  <span class="pub-venue-detail">Moratuwa Engineering Research Conference</span>
+                  <span class="pub-venue-status">Accepted</span>
+                </p>
+
+                <p class="pub-item__links">
+                  <a href="https://arxiv.org/abs/2606.19169" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-external" /></svg>arXiv</a>
+                  <a href="https://github.com/nichula01/RespGeomLib" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-code" /></svg>Code</a>
+                  <a href="https://nichula01.github.io/Respgeomlib/" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-project" /></svg>Website</a>
+                </p>
+              </div>
+            </article>
           </div>
-        </article>
-
-        <!-- ── LoveDA long-tail augmentation — IGARSS 2026 ── -->
-        <article class="pub-item" id="pub-loveda-igarss-2026" data-category="remote-sensing" data-year="2026">
-          <figure class="pub-item__figure">
-            <!-- TODO: replace with final publication teaser -->
-            <img src="assets/img/publications/loveda-longtail.jpg" width="640" height="384" loading="lazy" decoding="async"
-                 alt="A generated rural remote-sensing scene beside its semantic land-cover map, from the prompt-controlled diffusion augmentation of LoveDA." />
-          </figure>
-
-          <div class="pub-item__body">
-            <h3 class="pub-item__title">Mitigating Long-Tail Bias in LoveDA via Prompt-Controlled Diffusion Augmentation</h3>
-
-            <p class="pub-item__authors">Buddhi Wijenayake, <strong>Nichula Wasalathilaka</strong>, Roshan Godaliyadda, Vijitha Herath, Parakrama Ekanayake, Vishal M. Patel</p>
-
-            <p class="pub-item__venue">
-              <span class="pub-venue-brand"><img src="assets/img/venues/igarss.png" width="158" height="64" loading="lazy" decoding="async" alt="" /></span>
-              <span class="pub-venue-name">IGARSS 2026</span>
-              <span class="pub-venue-detail">IEEE International Geoscience and Remote Sensing Symposium, Washington, DC, USA</span>
-              <span class="pub-venue-status">Accepted</span>
-            </p>
-
-            <p class="pub-item__links">
-              <a href="https://arxiv.org/abs/2602.04749" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-external" /></svg>arXiv</a>
-            </p>
-          </div>
-        </article>
-
-        <!-- ── Mamba-FCS — IEEE J-STARS ── -->
-        <article class="pub-item" id="pub-mambafcs-jstars-2026" data-category="remote-sensing" data-year="2026">
-          <figure class="pub-item__figure">
-            <!-- TODO: replace with final publication teaser -->
-            <img src="assets/img/publications/mamba-fcs.jpg" width="640" height="384" loading="lazy" decoding="async"
-                 alt="Mamba-FCS overview: pre-change and post-change satellite images entering the shared encoder and the three-branch semantic and binary change decoder." />
-          </figure>
-
-          <div class="pub-item__body">
-            <p class="pub-badges">
-              <span class="pub-badge pub-badge--type">Journal</span>
-            </p>
-
-            <h3 class="pub-item__title">Mamba-FCS: Joint Spatio-Frequency Feature Fusion, Change-Guided Attention, and SeK Inspired Loss for Enhanced Semantic Change Detection in Remote Sensing</h3>
-
-            <p class="pub-item__authors">Buddhi Wijenayake, Athulya Ratnayake, Praveen Sumanasekara, Roshan Godaliyadda, Parakrama Ekanayake, Vijitha Herath, <strong>Nichula Wasalathilaka</strong></p>
-
-            <p class="pub-item__venue">
-              <!-- images/jstars.png, the IEEE Geoscience and Remote Sensing Society mark that publishes J-STARS. -->
-              <span class="pub-venue-brand"><img src="assets/img/venues/ieee-grss.png" width="99" height="64" loading="lazy" decoding="async" alt="" /></span>
-              <span class="pub-venue-name">IEEE J-STARS &middot; 2026</span>
-              <span class="pub-venue-detail">IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing</span>
-              <span class="pub-venue-status">Published</span>
-            </p>
-
-            <p class="pub-item__links">
-              <a href="https://ieeexplore.ieee.org/document/11391528" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-paper" /></svg>IEEE Xplore</a>
-              <a href="https://github.com/Buddhi19/Mamba-FCS.git" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-code" /></svg>Code</a>
-            </p>
-          </div>
-        </article>
-
-        <!-- ── RespGeomLib — IEEE Mercon 2026 ── -->
-        <article class="pub-item" id="pub-respgeomlib-mercon-2026" data-category="scientific-computing" data-year="2026">
-          <figure class="pub-item__figure">
-            <!-- TODO: replace with final publication teaser -->
-            <img src="assets/img/publications/respgeomlib.jpg" width="640" height="384" loading="lazy" decoding="async"
-                 alt="A CT-derived airway reconstruction that breaks into distal fragments, beside a RespGeomLib procedural airway with smooth branching at every junction." />
-          </figure>
-
-          <div class="pub-item__body">
-            <p class="pub-badges">
-              <span class="pub-badge pub-badge--author">First author</span>
-            </p>
-
-            <h3 class="pub-item__title">RespGeomLib: A Reproducible Parametric Engine for Generating Analysis-Ready Human Airway Lumen Geometry</h3>
-
-            <p class="pub-item__authors"><strong>Nichula Wasalathilaka</strong>, Parakrama Ekanayaka, Roshan Godaliyadda</p>
-
-            <p class="pub-item__venue">
-              <!-- TODO: no IEEE Mercon logo file exists in this repository; textual mark until one is supplied. -->
-              <span class="pub-venue-brand"><span class="pub-venue-mark">Mercon</span></span>
-              <span class="pub-venue-name">IEEE Mercon 2026</span>
-              <span class="pub-venue-detail">Moratuwa Engineering Research Conference</span>
-              <span class="pub-venue-status">Accepted</span>
-            </p>
-
-            <p class="pub-item__links">
-              <a href="https://arxiv.org/abs/2606.19169" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-external" /></svg>arXiv</a>
-              <a href="https://github.com/nichula01/RespGeomLib" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-code" /></svg>Code</a>
-              <a href="https://nichula01.github.io/Respgeomlib/" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-project" /></svg>Website</a>
-            </p>
-          </div>
-        </article>
-
-        <!-- ── Precision spatio-temporal fusion — ICIIS 2025 ── -->
-        <article class="pub-item" id="pub-iciis-2025" data-category="remote-sensing" data-year="2025">
-          <figure class="pub-item__figure">
-            <!-- TODO: replace with final publication teaser -->
-            <img src="assets/img/publications/iciis-precision-stf.jpg" width="640" height="384" loading="lazy" decoding="async"
-                 alt="Two change-detection scenes: pre-event and post-event satellite images beside their ground-truth change maps." />
-          </figure>
-
-          <div class="pub-item__body">
-            <h3 class="pub-item__title">Precision Spatio-Temporal Feature Fusion for Robust Remote Sensing Change Detection</h3>
-
-            <p class="pub-item__authors">Buddhi Wijenayake, Athulya Ratnayake, Praveen Sumanasekara, <strong>Nichula Wasalathilaka</strong>, Mathivathanan Piratheepan, Roshan Godaliyadda, Mervyn Ekanayake, Vijitha Herath</p>
-
-            <p class="pub-item__venue">
-              <span class="pub-venue-brand"><img src="assets/img/venues/iciis.png" width="93" height="64" loading="lazy" decoding="async" alt="" /></span>
-              <span class="pub-venue-name">ICIIS 2025</span>
-              <span class="pub-venue-detail">19th IEEE International Conference on Industrial and Information Systems, Kandy, Sri Lanka</span>
-              <span class="pub-venue-status">Published</span>
-            </p>
-
-            <p class="pub-item__links">
-              <a href="https://ieeexplore.ieee.org/document/11450773" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-paper" /></svg>IEEE Xplore</a>
-              <a href="https://github.com/Buddhi19/MambaCD.git" target="_blank" rel="noopener noreferrer"><svg class="pub-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#icon-code" /></svg>Code</a>
-            </p>
-          </div>
-        </article>
+        </section>
 
       </div>
-
-      <p class="pub-empty" data-pub-empty role="status" hidden>No publications in this category yet.</p>
     </section>
 
   </main>

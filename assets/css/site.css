@@ -29,6 +29,10 @@
   --gutter: clamp(1.25rem, 3vw, 2rem);
   --radius: 3px;
 
+  /* Height of the sticky .site-header. Anything that has to clear it when
+     scrolled to — see .pub-section's scroll-margin-top — reads this. */
+  --header-h: 65px;
+
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   --speed: 0.2s;
 }
@@ -40,6 +44,16 @@
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+/* The UA rule for [hidden] is display:none, but any author `display` on the
+   same element outranks it. Several components here are laid out with
+   display:flex/grid *and* toggled through the `hidden` property from
+   JavaScript (the publications filter, the gallery filter strip, the
+   "no publications in this category" note), so without this the attribute is
+   silently inert and a filtered-out row stays on screen. */
+[hidden] {
+  display: none !important;
 }
 
 html {
@@ -1698,10 +1712,10 @@ button {
   color: var(--muted);
 }
 
-/* 14b. Filter and sort controls ------------------------------------------- */
-/* Hidden until publications.js takes over, so a JavaScript-less visitor is
-   never shown controls that cannot do anything. The full list is in the
-   markup and stays readable without them. */
+/* 14b. Research-area navigation and sort ---------------------------------- */
+/* The navigation is anchors to the three research sections, so it works
+   without JavaScript and ships visible. Only the sort control is hidden until
+   publications.js reveals it. Nothing on this page filters. */
 .pubs-controls {
   display: flex;
   flex-wrap: wrap;
@@ -1711,13 +1725,13 @@ button {
   margin-top: 1.75rem;
 }
 
-.pubs-filters {
+.pubs-nav {
   display: flex;
   flex-wrap: wrap;
   gap: 0.375rem;
 }
 
-.pubs-filter {
+.pubs-nav__link {
   padding: 0.375rem 0.8125rem;
   border: 1px solid var(--border-strong);
   border-radius: 5px;
@@ -1727,16 +1741,18 @@ button {
   font-weight: 500;
   line-height: 1.4;
   white-space: nowrap;
+  text-decoration: none;
   cursor: pointer;
   transition: background-color var(--speed) var(--ease),
     border-color var(--speed) var(--ease), color var(--speed) var(--ease);
 }
 
-.pubs-filter:hover {
+.pubs-nav__link:hover {
   border-color: var(--text);
 }
 
-.pubs-filter[aria-pressed="true"] {
+/* The section the reader is currently inside. */
+.pubs-nav__link[aria-current="true"] {
   background: var(--accent);
   border-color: var(--accent);
   color: #ffffff;
@@ -1762,30 +1778,88 @@ button {
   cursor: pointer;
 }
 
-/* 14c. The list ------------------------------------------------------------ */
+/* 14c. Research sections --------------------------------------------------- */
+/* Carries id="publication-list": the All control's target, deliberately above
+   the first section heading so landing here is the "All" state rather than
+   being indistinguishable from a click on Medical AI. */
 .pubs-archive {
   padding-bottom: 4.5rem;
+  scroll-margin-top: calc(var(--header-h) + 1rem);
+}
+
+.pub-sections {
+  margin-top: 2.25rem;
+}
+
+/* A change of research area should read as a change of chapter, so the gap
+   between sections is far larger than the gap between rows inside one. */
+.pub-section + .pub-section {
+  margin-top: 5rem;
+}
+
+/* Clears the sticky header when a section is jumped to, whether by the
+   navigation above, a pasted #medical-ai link, or browser back/forward. */
+.pub-section {
+  scroll-margin-top: calc(var(--header-h) + 1.5rem);
+}
+
+/* No card: a thin rule, a red number, the area, one line of description. */
+.pub-section__head {
+  padding-top: 1.125rem;
+  border-top: 1px solid var(--border);
+}
+
+.pub-section__title {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6875rem;
+  font-size: 1.4375rem;
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  line-height: 1.15;
+  color: var(--text);
+}
+
+.pub-section__num {
+  flex: 0 0 auto;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+
+.pub-section__lede {
+  margin: 0.4375rem 0 0;
+  font-size: 0.9063rem;
+  line-height: 1.55;
+  color: var(--muted);
 }
 
 .pub-list {
   display: grid;
-  gap: 0.875rem;
+  gap: 1rem;
   margin-top: 1.5rem;
 }
 
+/* One row per paper: teaser, then everything else. A single container and a
+   single border — no inner cards, no boxed metadata, no button chrome.
+   scroll-margin-top for the #pub-… deep links the homepage uses. */
 .pub-item {
+  scroll-margin-top: calc(var(--header-h) + 1.5rem);
   display: grid;
-  grid-template-columns: clamp(210px, 16vw, 230px) minmax(0, 1fr);
-  gap: 1.25rem;
-  padding: 1.25rem;
+  grid-template-columns: clamp(220px, 18vw, 244px) minmax(0, 1fr);
+  gap: 1.625rem;
+  padding: 1.375rem;
   border: 1px solid var(--border);
-  border-radius: 9px;
+  border-radius: 7px;
   background: var(--bg);
-  box-shadow: 0 1px 2px rgba(16, 16, 16, 0.03);
+  box-shadow: 0 1px 2px rgba(16, 16, 16, 0.025);
   transition: border-color var(--speed) var(--ease);
 }
 
-/* An archive, not a card deck: the row does not lift, scale or glow. */
+/* An archive, not a card deck: the row does not lift, scale or glow. Hover
+   darkens the border and nothing else. */
 .pub-item:hover {
   border-color: var(--border-strong);
 }
@@ -1794,45 +1868,41 @@ button {
   margin: 0;
 }
 
-/* contain, never cover: several teasers are architecture diagrams and
-   qualitative panels where a crop would cost scientific meaning. The
+/* contain, never cover: every teaser here is an architecture diagram or a
+   qualitative panel where a crop would cost scientific meaning. The
    derivatives are pre-fitted onto a --figure-bg ground, so the letterbox is
-   invisible against the box behind it. */
+   indistinguishable from the plate behind them — which is why this needs no
+   border of its own. The row already has one. */
 .pub-item__figure img {
+  display: block;
   width: 100%;
   aspect-ratio: 5 / 3;
   object-fit: contain;
-  padding: 4px;
-  border: 1px solid var(--border);
-  border-radius: 7px;
+  border-radius: 5px;
   background: var(--figure-bg);
 }
 
 .pub-item__body {
   display: flex;
   flex-direction: column;
-  gap: 0.375rem;
+  gap: 0.4375rem;
   min-width: 0;
 }
 
-/* 14d. Badges — metadata only, and only where the record states it. -------- */
-.pub-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-bottom: 0.1rem;
-}
-
+/* 14d. Badge — at most one per row, and only where the record states it.
+   This is the one place a pill is allowed: it is a metadata tag, not a
+   control. Category is not shown here; that is what the filter bar is for. */
 .pub-badge {
+  align-self: start;
   display: inline-flex;
   align-items: center;
-  padding: 0.1rem 0.5rem;
+  padding: 3px 8px;
   border: 1px solid transparent;
   border-radius: 999px;
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  line-height: 1.55;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
   text-transform: uppercase;
 }
 
@@ -1851,10 +1921,10 @@ button {
 /* 14e. Row content --------------------------------------------------------- */
 .pub-item__title {
   margin: 0;
-  font-size: 1.125rem;
+  font-size: 1.1875rem;
   font-weight: 700;
-  letter-spacing: -0.014em;
-  line-height: 1.26;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
   color: var(--text);
 }
 
@@ -1872,47 +1942,40 @@ button {
   white-space: nowrap;
 }
 
+/* One continuous inline metadata line: logo, short name, full venue,
+   location, status, separated by middle dots. Deliberately not a row of
+   chips — nothing in here carries a box of its own. */
 .pub-item__venue {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.25rem 0.5rem;
-  margin-top: 0.125rem;
+  gap: 0.1875rem 0.5rem;
+  margin-top: 0.1875rem;
   font-size: 0.8438rem;
   line-height: 1.45;
   color: var(--muted);
 }
 
-/* Fixed-width slot so the venue text starts on the same x in every row,
-   whether the venue has a logo file or falls back to a text mark. */
+/* Sized by the logo it holds rather than a fixed slot, so the venue text
+   follows the mark instead of sitting in a second column. */
 .pub-venue-brand {
-  flex: 0 0 66px;
-  display: flex;
+  flex: 0 0 auto;
+  display: inline-flex;
   align-items: center;
-  height: 26px;
 }
 
 .pub-venue-brand img {
-  max-width: 66px;
+  max-width: 72px;
   max-height: 26px;
   width: auto;
   height: auto;
   object-fit: contain;
 }
 
-.pub-venue-mark {
-  padding: 0.05rem 0.375rem;
-  border: 1px solid var(--border-strong);
-  border-radius: 3px;
-  font-size: 0.625rem;
-  font-weight: 700;
-  letter-spacing: 0.07em;
-  line-height: 1.6;
-  text-transform: uppercase;
-  color: var(--muted);
-  white-space: nowrap;
-}
-
+/* A venue with no cleared logo file (MICCAI, Mercon) has no brand element at
+   all: the line simply starts with the bold venue name. The boxed textual
+   mark that used to stand in for the logo only restated that name, so it was
+   a box carrying no information. */
 .pub-venue-name {
   font-weight: 600;
   color: var(--text);
@@ -1968,20 +2031,14 @@ button {
   stroke-linejoin: round;
 }
 
-.pub-empty {
-  margin-top: 1.5rem;
-  padding: 2.25rem 0;
-  font-size: 0.9375rem;
-  color: var(--muted);
-}
-
 /* 14g. Responsive ---------------------------------------------------------- */
 
 /* Narrow desktop / tablet landscape: the teaser gives up width first. */
 @media (max-width: 1080px) {
   .pub-item {
-    grid-template-columns: 200px minmax(0, 1fr);
-    gap: 1.125rem;
+    grid-template-columns: 205px minmax(0, 1fr);
+    gap: 1.25rem;
+    padding: 1.25rem;
   }
 }
 
@@ -1992,7 +2049,7 @@ button {
   }
 
   /* nowrap matters: a wrapping column container sizes each line to its
-     widest item, so the scrolling filter strip below would stretch the whole
+     widest item, so the scrolling nav strip below would stretch the whole
      control block to its content width and push the page sideways. */
   .pubs-controls {
     flex-direction: column;
@@ -2002,31 +2059,56 @@ button {
     margin-top: 1.5rem;
   }
 
-  /* One scrolling strip rather than five stacked rows of buttons. */
-  .pubs-filters {
+  /* One scrolling strip rather than four stacked rows. */
+  .pubs-nav {
     flex-wrap: nowrap;
     min-width: 0;
+    white-space: nowrap;
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
 
-  .pubs-filters::-webkit-scrollbar {
+  .pubs-nav::-webkit-scrollbar {
     display: none;
   }
 
-  .pubs-filter {
+  .pubs-nav__link {
     flex: 0 0 auto;
   }
 
+  .pub-sections {
+    margin-top: 2rem;
+  }
+
+  /* Still a clear chapter break, but a phone needs less of one. */
+  .pub-section + .pub-section {
+    margin-top: 3.5rem;
+  }
+
+  .pub-section__head {
+    padding-top: 1rem;
+  }
+
+  .pub-section__title {
+    font-size: 1.25rem;
+    gap: 0.5625rem;
+  }
+
+  .pub-section__lede {
+    font-size: 0.8438rem;
+  }
+
+  /* Stacked, in reading order: teaser, badge, title, authors, venue, links. */
   .pub-item {
     grid-template-columns: minmax(0, 1fr);
     gap: 0.875rem;
-    padding: 1rem;
+    padding: 1.0625rem;
   }
 
   /* Fixed height instead of a fixed ratio: at 700px a full-width 5:3 teaser
-     would stand taller than all the text beside it. */
+     would stand taller than all the text beside it. Still `contain`, so no
+     architecture diagram gets cropped on a phone. */
   .pub-item__figure img {
     aspect-ratio: auto;
     height: 190px;
@@ -2040,12 +2122,34 @@ button {
     font-size: 0.8438rem;
   }
 
+  /* The venue line stops being one line: logo and short name lead, then the
+     full venue name and the location/status wrap underneath rather than
+     being squeezed. */
   .pub-item__venue {
+    font-size: 0.8125rem;
+    gap: 0.125rem 0.4375rem;
+  }
+
+  /* Full venue name and status each take their own line under the brand. */
+  .pub-item__venue .pub-venue-detail,
+  .pub-item__venue .pub-venue-status {
+    flex: 0 0 100%;
+  }
+
+  /* A leading middle dot separates items along a line; at the start of one it
+     is just a stray mark. */
+  .pub-item__venue .pub-venue-detail::before,
+  .pub-item__venue .pub-venue-status::before {
+    content: none;
+    margin-right: 0;
+  }
+
+  .pub-item__links {
     font-size: 0.8125rem;
   }
 
   .pubs-archive {
-    padding-bottom: 3.25rem;
+    padding-bottom: 4rem;
   }
 }
 

@@ -174,10 +174,11 @@ Fit-Teaser 'images/VLM OOD Architecture.png' "$pub\proton.jpg" `
 Fit-Teaser 'images/research/igarss2026_vss_benchmark_pipeline.png' "$pub\vss-benchmark.jpg" `
   0 0 2200 1320 $W $H $Q
 
-# LoveDA long-tail augmentation (IGARSS 2026). Panel (c) of the dataset
-# figure: a generated rural scene beside its semantic map.
-Fit-Teaser 'images/research/dataset.jpg' "$pub\loveda-longtail.jpg" `
-  84 2090 2457 1236 $W $H $Q
+# LoveDA long-tail augmentation (IGARSS 2026). The paper's Stage B training
+# figure, fitted whole: cropping this pipeline would drop either the semantic
+# map and prompt on the left or the diffusion loss on the right.
+Fit-Teaser 'images/research/stageB.jpg' "$pub\loveda-longtail.jpg" `
+  0 0 5055 2405 $W $H $Q
 
 # Mamba-FCS (IEEE J-STARS). Same figure the homepage thumbnail uses, widened
 # past the encoder: pre-/post-change inputs through the shared stages.
@@ -190,10 +191,13 @@ Fit-Teaser 'images/research/mambafcs_overview_architecture.jpg' "$pub\mamba-fcs.
 Fit-Teaser 'images/fig9_new (1).png' "$pub\respgeomlib.jpg" `
   15 18 1416 996 $W $H $Q
 
-# Precision spatio-temporal fusion (ICIIS 2025). Two scenes of the
-# qualitative figure: pre-event, post-event and ground truth.
+# Precision spatio-temporal fusion (ICIIS 2025). The whole qualitative
+# figure: three scenes across pre-event, post-event, ground truth and the two
+# prediction columns. The crop is the figure's measured content bounding box
+# (204,144 - 3189,1902) padded to exactly 5:3, so the outer black margin is
+# dropped and the panel fills the frame without a letterbox seam.
 Fit-Teaser 'images/research/iciis2025_precision_spatiotemporal_qualitative.jpg' "$pub\iciis-precision-stf.jpg" `
-  178 119 1844 1189 $W $H $Q
+  204 128 2986 1792 $W $H $Q
 
 '--- venue logos (copies of logos already in images/) ---'
 
